@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1eec187b3c0eee48bdfd6372496f7dd, type: 3}
+  m_Name: NoPlant
+  m_EditorClassIdentifier: Assembly-CSharp::CropData
+  tiles:
+  - {fileID: 11400000, guid: 7b1adeb4b51283743addfcfc24588ae3, type: 2}
+  noPlant: 1
+  withCorn: 0
+  withParsley: 0
+  withPotato: 0
+  withStrawberry: 0
+  withTomato: 0
+  planted: 0
+  collectible: 0
+  collectibleRice: 0
+  collectibleBerry: 0
