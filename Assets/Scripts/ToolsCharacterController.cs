@@ -56,7 +56,6 @@ public class ToolsCharacterController : MonoBehaviour
         shopPanel = shopPanelAll[0];
     }
 
-    // Update is called once per frame
     void Update()
     {
         SelectTile();

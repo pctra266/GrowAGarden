@@ -50,11 +50,6 @@ public class CropsReadController : MonoBehaviour
     public TileBase GetTileBase(Vector3Int gridPosition)
     {
         TileBase tile = tilemap.GetTile(gridPosition);
-        if (tile == null)
-            Debug.LogWarning($"No tile at cell {gridPosition} on Tilemap {tilemap.name}");
-        else
-            Debug.Log($"Tile at {gridPosition} is {tile.name}");
-
         return tile;
     }
 
