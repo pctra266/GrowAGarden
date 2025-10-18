@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8688a1cbc65e55149ae5f644998ca250, type: 3}
+  m_Name: Rice
+  m_EditorClassIdentifier: Assembly-CSharp::Crop
+  state0: {fileID: 11400000, guid: 6a098b3ee0817f94eb87081e32239910, type: 2}
+  state1: {fileID: 11400000, guid: 4cc19d6ea1f7aea4a9cf7cac0e1e9eb6, type: 2}
+  state2: {fileID: 11400000, guid: a95a20f95710729419e7d9a9c28e80fa, type: 2}
+  state3: {fileID: 11400000, guid: 2af51124952fdfb488a1c7a6fcfd27e3, type: 2}
+  state4: {fileID: 0}
+  state5: {fileID: 0}
+  state: {fileID: 0}
+  position: {x: 0, y: 0, z: 0}
+  timeRemaining: 120
+  timerIsRunning: 0
+  currentStage: 0

@@ -1,41 +1,40 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
-public class ChestHit : ToolHit
+public class DeytroyableHit : ToolHit
 {
-    [SerializeField] GameObject pickUpWateringCan;
-    [SerializeField] GameObject pickUpHoe;
-
+    [SerializeField] GameObject[] pickUpItem;
     [SerializeField] int dropCount = 2;
     [SerializeField] float spread = 0.9f;
 
     List<GameObject> items;
-
     private void Start()
     {
         items = new List<GameObject>();
-        items.Add(pickUpWateringCan);
-        items.Add(pickUpHoe);
+        if(pickUpItem.Length == 0)
+        {
+            Debug.LogWarning("No items assigned to destroyable object");
+        }
+        else
+        {
+                
+        for (int i = 0; i < pickUpItem.Length; i++)
+        {
+            items.Add(pickUpItem[i]);
+        }
+        }
     }
-
     public override void Hit()
     {
-        // spawning objects
-        while (dropCount > 0)
+        for (int i = 0; i < dropCount && i < items.Count; i++)
         {
-            dropCount -= 1;
-
-            // calculating where items will drop
             Vector3 position = transform.position;
             position.x -= spread * UnityEngine.Random.value - spread / 2;
             position.y -= spread * UnityEngine.Random.value - spread / 2;
 
-            GameObject newObject = Instantiate(items[dropCount]);
+            GameObject newObject = Instantiate(items[i]);
             newObject.transform.position = position;
         }
-
         Destroy(gameObject);
 
     }

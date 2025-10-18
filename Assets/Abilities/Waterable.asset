@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a13ca09b21fc964a8f6008d6d4e7539, type: 3}
   m_Name: Waterable
   m_EditorClassIdentifier: Assembly-CSharp::TileData
-  tiles: []
+  tiles:
+  - {fileID: 11400000, guid: 25b359fe5dae92b42b49b4846f3cc1fd, type: 2}
   plowable: 0
   ableToMow: 0
   ableToSeed: 0

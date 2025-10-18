@@ -9,26 +9,23 @@ using UnityEngine.UI;
 
 public class Crop : ScriptableObject
 {
-    public TileBase state0;
-
-    public TileBase state1;
-
-    public TileBase state2;
-
-    public TileBase state3;
-
-    public TileBase state4;
-
-    public TileBase state5;
-
-    //public Tilemap cropTilemap;
-
+    public TileBase state0, state1, state2, state3, state4, state5;
     public TileBase state;
     public Vector3Int position;
+    public float timeRemaining;
+    public bool timerIsRunning;
+    public int currentStage = 0;
 
-    public float timeRemaining = 10;
-    public bool timerIsRunning = false;
-    public Text timeText;
-    public string Name;
-
+    public void NextState()
+    {
+        currentStage++;
+        switch (currentStage)
+        {
+            case 1: state = state1; break;
+            case 2: state = state2; break;
+            case 3: state = state3; break;
+            case 4: state = state4; break;
+            case 5: state = state5; break;
+        }
+    }
 }

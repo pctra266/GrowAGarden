@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a13ca09b21fc964a8f6008d6d4e7539, type: 3}
   m_Name: Unable
   m_EditorClassIdentifier: Assembly-CSharp::TileData
-  tiles: []
+  tiles:
+  - {fileID: 11400000, guid: e7e38b89f46848d4b9f625193cef60ee, type: 2}
   plowable: 0
   ableToMow: 0
   ableToSeed: 0
