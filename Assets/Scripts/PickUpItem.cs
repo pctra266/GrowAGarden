@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PickUpItem : MonoBehaviour
@@ -45,6 +43,17 @@ public class PickUpItem : MonoBehaviour
 
             Destroy(gameObject);
 
+        }
+    }
+
+    public void SetItem(Item newItem, int newCount)
+    {
+        item = newItem;
+        count = newCount;
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (sr != null)
+        {
+            sr.sprite = newItem.icon;
         }
     }
 }
