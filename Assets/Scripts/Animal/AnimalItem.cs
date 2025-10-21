@@ -1,5 +1,5 @@
 using UnityEngine;
-
+[CreateAssetMenu(fileName = "New Animal Item", menuName = "Data/Animal Item", order = 1)]
 public class AnimalItem : Item
 {
 

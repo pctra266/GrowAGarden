@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 973121d1eb9a75441ac141fde9e55b05, type: 3}
+  m_Name: CowItem
+  m_EditorClassIdentifier: Assembly-CSharp::AnimalItem
+  Name: Cow
+  stackable: 0
+  icon: {fileID: -5922754114360663000, guid: adf8795d33269f0458fc47a4d3186fc3, type: 3}
+  isSeed: 0
+  animalPrefab: {fileID: 6868533036464332019, guid: 6c1267ef8f4175444b73ec01d5d56965, type: 3}
+  movementSpeed: 1
+  productItem: {fileID: 11400000, guid: 76e7397a255f9fe40b1b510e7e59513f, type: 2}
+  productionTimeInSeconds: 120
+  purchaseCost: 250
