@@ -1,17 +1,9 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AnimalManager : MonoBehaviour
 {
+    // Singleton Pattern để cửa hàng có thể dễ dàng gọi đến
     public static AnimalManager Instance { get; private set; }
-
-    [Header("Configuration")]
-    public Transform spawnPoint;
-    public int maxAnimals = 10;
-
-    public GameObject productPickupPrefab;
-
-    private List<GameObject> activeAnimals = new List<GameObject>();
 
     private void Awake()
     {
@@ -19,35 +11,26 @@ public class AnimalManager : MonoBehaviour
         else Instance = this;
     }
 
-    public bool CanPurchaseAnimal()
+    // Hàm duy nhất mà cửa hàng cần biết
+    // Nó nhận vào DỮ LIỆU của con vật và vị trí để tạo ra nó
+    public void PurchaseAnimal(AnimalItem animalItem, Vector3 spawnPosition)
     {
-        return activeAnimals.Count < maxAnimals;
-    }
-
-    public void PurchaseAnimal(AnimalItem animalItem)
-    {
-        if (!CanPurchaseAnimal())
-        {
-            Debug.Log("Nông trại đã đầy!");
-            return;
-        }
-
         if (animalItem.animalPrefab == null)
         {
             Debug.LogError("Animal Prefab chưa được gán trong " + animalItem.Name);
             return;
         }
 
-        GameObject newAnimalObj = Instantiate(animalItem.animalPrefab, spawnPoint.position, Quaternion.identity);
+        // Tạo một bản sao của prefab tương ứng (CowPrefab hoặc ChickenPrefab) tại vị trí được chỉ định
+        GameObject newAnimalObj = Instantiate(animalItem.animalPrefab, spawnPosition, Quaternion.identity);
 
+        // Lấy "bộ não" (AnimalController) từ con vật vừa tạo
         AnimalController controller = newAnimalObj.GetComponent<AnimalController>();
-        if (controller == null)
+
+        if (controller != null)
         {
-            controller = newAnimalObj.AddComponent<AnimalController>();
+            // "Nạp" dữ liệu vào bộ não.
+            controller.Initialize(animalItem);
         }
-
-        controller.Initialize(animalItem);
-
-        activeAnimals.Add(newAnimalObj);
     }
 }
