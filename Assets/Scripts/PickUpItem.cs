@@ -45,11 +45,11 @@ public class PickUpItem : MonoBehaviour
 
         }
     }
-
     public void SetItem(Item newItem, int newCount)
     {
         item = newItem;
         count = newCount;
+
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         if (sr != null)
         {

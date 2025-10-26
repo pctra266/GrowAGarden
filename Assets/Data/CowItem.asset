@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: CowItem
   m_EditorClassIdentifier: Assembly-CSharp::AnimalItem
   Name: Cow
-  stackable: 0
+  stackable: 1
   icon: {fileID: -5922754114360663000, guid: adf8795d33269f0458fc47a4d3186fc3, type: 3}
   isSeed: 0
   animalPrefab: {fileID: 6868533036464332019, guid: 6c1267ef8f4175444b73ec01d5d56965, type: 3}
   movementSpeed: 1
   productItem: {fileID: 11400000, guid: 76e7397a255f9fe40b1b510e7e59513f, type: 2}
-  productionTimeInSeconds: 120
+  productionTimeInSeconds: 10
   purchaseCost: 250

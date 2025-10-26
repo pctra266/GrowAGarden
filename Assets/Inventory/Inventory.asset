@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Inventory
   m_EditorClassIdentifier: Assembly-CSharp::ItemContainer
   slots:
-  - item: {fileID: 0}
-    count: 0
+  - item: {fileID: 11400000, guid: 76e7397a255f9fe40b1b510e7e59513f, type: 2}
+    count: 7
   - item: {fileID: 0}
     count: 0
   - item: {fileID: 0}

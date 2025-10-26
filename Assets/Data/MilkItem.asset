@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: MilkItem
   m_EditorClassIdentifier: Assembly-CSharp::Item
   Name: Milk
-  stackable: 0
+  stackable: 1
   icon: {fileID: -6342842787030672830, guid: f756516dfed35da40a7d164bf7d127db, type: 3}
   isSeed: 0

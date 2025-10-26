@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,13 +10,17 @@ public class UI_ShopController : MonoBehaviour
     private Button btn;
     [SerializeField] GameObject toolbarPanel;
     [SerializeField] GameObject inventoryPanel;
+
+    [SerializeField] private AnimalItem cowItem;
+    [SerializeField] private AnimalItem chickenItem;
+    [SerializeField] private Transform animalSpawnPoint;
     public bool isOpen;
 
     private void Awake()
     {
         container = transform.Find("container");
         shopItemTemplate = container.Find("shopItemTemplate");
-        shopItemTemplate.gameObject.SetActive(false); 
+        shopItemTemplate.gameObject.SetActive(false);
     }
 
     private void Start()
@@ -25,9 +29,11 @@ public class UI_ShopController : MonoBehaviour
         Dictionary<string, Sprite> plantsDictionary = CreateSeedsFromSprite();
         CreateItemButton(plantsDictionary["Seeds_Berry"], "Seeds_Berry", 110, 0, "Berry");
         CreateItemButton(plantsDictionary["Seeds_Rice"], "Seeds_Rice", 100, 1, "Rice");
-
+        if (cowItem != null) CreateAnimalButton(cowItem, 2, "Bò Sữa");
+        if (chickenItem != null) CreateAnimalButton(chickenItem, 3, "Gà");
         gameObject.SetActive(false);
         Hide();
+
     }
 
     private Dictionary<string, Sprite> CreateSeedsFromSprite()
@@ -109,5 +115,35 @@ public class UI_ShopController : MonoBehaviour
     {
         inventoryPanel.SetActive(false);
         toolbarPanel.SetActive(true);
+    }
+
+
+    private void CreateAnimalButton(AnimalItem animalData, int positionIndex, string displayedName)
+    {
+        Transform shopItemTransform = Instantiate(shopItemTemplate, container);
+        shopItemTransform.gameObject.SetActive(true);
+        RectTransform shopItemRectTransform = shopItemTransform.GetComponent<RectTransform>();
+        float shopItemHeight = 120f;
+        shopItemRectTransform.anchoredPosition = new Vector2(0, 150 + (-shopItemHeight * positionIndex));
+        shopItemTransform.Find("nameText").GetComponent<TextMeshProUGUI>().SetText(displayedName);
+        shopItemTransform.Find("priceText").GetComponent<TextMeshProUGUI>().SetText(animalData.purchaseCost.ToString());
+        shopItemTransform.Find("itemIcon").GetComponent<Image>().sprite = animalData.icon;
+
+        btn = shopItemTransform.GetComponent<Button>();
+        btn.onClick.AddListener(() => BuyAnimal(animalData));
+    }
+
+    void BuyAnimal(AnimalItem animalToBuy)
+    {
+        if (money.canBuyItems(animalToBuy.purchaseCost))
+        {
+            money.substractMoney(animalToBuy.purchaseCost);
+            FindFirstObjectByType<SoundManager>()?.Play("Money");
+            AnimalManager.Instance.PurchaseAnimal(animalToBuy, animalSpawnPoint.position);
+        }
+        else
+        {
+            Debug.Log("Không đủ tiền!");
+        }
     }
 }
