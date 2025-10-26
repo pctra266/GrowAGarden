@@ -7,6 +7,8 @@ TagManager:
   - shop
   - toolbar
   - inventory
+  - Destroyable
+  - Animal
   layers:
   - Default
   - TransparentFX
