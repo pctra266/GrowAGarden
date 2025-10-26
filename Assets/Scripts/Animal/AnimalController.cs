@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AnimalController : MonoBehaviour
 {
@@ -6,11 +6,9 @@ public class AnimalController : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animator;
 
+    // AI & Production variables
     private Vector2 targetPosition;
     private float wanderTimer;
-    public float wanderTimeMin = 3f;
-    public float wanderTimeMax = 7f;
-
     private float productionTimer;
 
     private void Awake()
@@ -23,7 +21,6 @@ public class AnimalController : MonoBehaviour
     {
         animalData = data;
         gameObject.name = animalData.Name + "_Instance";
-
         productionTimer = animalData.productionTimeInSeconds;
         PickNewWanderTarget();
     }
@@ -45,25 +42,28 @@ public class AnimalController : MonoBehaviour
         if (productionTimer <= 0)
         {
             Produce();
-            productionTimer = animalData.productionTimeInSeconds;
+            productionTimer = animalData.productionTimeInSeconds; // Reset timer
         }
     }
 
     void Produce()
     {
-        if (AnimalManager.Instance == null || AnimalManager.Instance.productPickupPrefab == null || animalData.productItem == null) { Debug.LogError("Thi?u tham chi?u c?n thi?t ?? t?o s?n ph?m!"); return; }
+        // 1. Tạo một GameObject trống để chứa sản phẩm
+        GameObject productObj = new GameObject(animalData.productItem.Name + "_Pickup");
 
+        // 2. Đặt vị trí cho nó ở gần con vật
         Vector3 spawnPosition = transform.position + (Vector3)Random.insideUnitCircle * 0.7f;
+        productObj.transform.position = spawnPosition;
 
-        GameObject productObj = Instantiate(AnimalManager.Instance.productPickupPrefab, spawnPosition, Quaternion.identity);
+        // 3. Thêm các component cần thiết để nó hoạt động như một vật phẩm nhặt được
+        SpriteRenderer sr = productObj.AddComponent<SpriteRenderer>();
+        sr.sortingOrder = 1;             // ✅ set order cố định
 
-        PickUpItem pickupScript = productObj.GetComponent<PickUpItem>();
-        if (pickupScript != null)
-        {
-            pickupScript.SetItem(animalData.productItem, 1);
-        }
+        productObj.AddComponent<BoxCollider2D>().isTrigger = true;
 
-        Debug.Log(animalData.Name + " ?� t?o ra s?n ph?m!");
+        // 4. Thêm và cấu hình script PickUpItem của bạn
+        PickUpItem pickupScript = productObj.AddComponent<PickUpItem>();
+        pickupScript.SetItem(animalData.productItem, 1);
     }
 
     void Wander()
@@ -73,19 +73,22 @@ public class AnimalController : MonoBehaviour
 
         if (animator != null)
         {
-            animator.SetBool("isWalking", direction.sqrMagnitude > 0);
+            animator.SetBool("isWalking", direction.sqrMagnitude > 0.01f);
         }
     }
 
     void UpdateWanderTimer()
     {
         wanderTimer -= Time.deltaTime;
-        if (wanderTimer <= 0 || Vector2.Distance(transform.position, targetPosition) < 0.2f) { PickNewWanderTarget(); }
+        if (wanderTimer <= 0 || Vector2.Distance(transform.position, targetPosition) < 0.2f)
+        {
+            PickNewWanderTarget();
+        }
     }
 
     void PickNewWanderTarget()
     {
         targetPosition = (Vector2)transform.position + Random.insideUnitCircle * 5f;
-        wanderTimer = Random.Range(wanderTimeMin, wanderTimeMax);
+        wanderTimer = Random.Range(3f, 7f); // Wander for 3 to 7 seconds
     }
 }
