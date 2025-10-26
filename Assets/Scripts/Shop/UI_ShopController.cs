@@ -80,7 +80,7 @@ public class UI_ShopController : MonoBehaviour
         if (money.canBuyItems(itemCost))
         {
             money.substractMoney(itemCost);
-            FindFirstObjectByType<SoundManager>().Play("Money");
+            //FindFirstObjectByType<SoundManager>().Play("Money");
             Debug.Log("buy " + itemCost);
             if (item.Name.Contains("Seeds_Rice"))
             {
@@ -138,7 +138,7 @@ public class UI_ShopController : MonoBehaviour
         if (money.canBuyItems(animalToBuy.purchaseCost))
         {
             money.substractMoney(animalToBuy.purchaseCost);
-            FindFirstObjectByType<SoundManager>()?.Play("Money");
+            //FindFirstObjectByType<SoundManager>()?.Play("Money");
             AnimalManager.Instance.PurchaseAnimal(animalToBuy, animalSpawnPoint.position);
         }
         else

@@ -56,13 +56,15 @@ public class PlayerControl : MonoBehaviour
     {
         if (vector != Vector3.zero)
         {
-            Move();
+            Move(); 
             animator.SetFloat("moveX", vector.x);
             animator.SetFloat("moveY", vector.y);
             animator.SetBool("moving", true);
         }
         else
         {
+            myRigidbody2D.linearVelocity = Vector2.zero;
+
             animator.SetBool("moving", false);
             if (FindFirstObjectByType<SoundManager>().SoundIsPlaying("Walk"))
             {
@@ -72,7 +74,8 @@ public class PlayerControl : MonoBehaviour
     }
     void Move()
     {
-        myRigidbody2D.MovePosition(transform.position + vector * speed * Time.deltaTime);
+        myRigidbody2D.linearVelocity = vector * speed;
+
         if (!FindFirstObjectByType<SoundManager>().SoundIsPlaying("Walk"))
         {
             FindFirstObjectByType<SoundManager>().Play("Walk");
