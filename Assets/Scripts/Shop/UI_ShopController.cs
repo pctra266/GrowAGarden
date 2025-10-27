@@ -10,10 +10,13 @@ public class UI_ShopController : MonoBehaviour
     private Button btn;
     [SerializeField] GameObject toolbarPanel;
     [SerializeField] GameObject inventoryPanel;
+    [SerializeField]
+    private GameObject buyButton;
 
     [SerializeField] private AnimalItem cowItem;
     [SerializeField] private AnimalItem chickenItem;
     [SerializeField] private Transform animalSpawnPoint;
+    
     public bool isOpen;
 
     private void Awake()
@@ -99,15 +102,18 @@ public class UI_ShopController : MonoBehaviour
 
     public void Show()
     {
+        Time.timeScale = 0f;
+        buyButton.SetActive(false);
         isOpen = true;
         gameObject.SetActive(true);
-
     }
 
     public void Hide()
     {
+        Time.timeScale = 1f;
         isOpen = false;
         gameObject.SetActive(false);
+        buyButton.SetActive(true);
     }
 
 

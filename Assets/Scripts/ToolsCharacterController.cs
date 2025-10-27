@@ -20,6 +20,7 @@ public class ToolsCharacterController : MonoBehaviour
     InventoryController inventoryController;
     ToolbarController toolbarController;
     [SerializeField] GameObject toolbarPanel;
+    [SerializeField] private GameObject shopUIButton;
 
     [SerializeField] float offsetDistance = 1f;
     [SerializeField] float sizeOfInteractableArea = 1.2f;
@@ -160,7 +161,10 @@ public class ToolsCharacterController : MonoBehaviour
     // interacting with physical objects in the world
     private bool UseToolWorld()
     {
-
+        if (shopUIButton != null && shopUIButton.activeInHierarchy)
+        {
+            return true; 
+        }
         if (Time.timeScale == 0)
             return false;
 

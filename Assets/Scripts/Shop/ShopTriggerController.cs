@@ -3,11 +3,25 @@ using UnityEngine;
 public class ShopTriggerController : MonoBehaviour
 {
     [SerializeField] private UI_ShopController uiShop;
+
+    [SerializeField] private RectTransform buyButtonRectTransform;
+    [SerializeField] private GameObject buyButtonPosition;
+
+    void Start() { 
+        if (buyButtonRectTransform != null)
+        {
+            buyButtonRectTransform.gameObject.SetActive(false);
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if(collider.gameObject.tag == "Player")
+        if (collider.gameObject.tag == "Player")
         {
-        uiShop.Show();
+            buyButtonRectTransform.gameObject.SetActive(true);
+            Vector3 worldPosition = buyButtonPosition.transform.position;
+            Vector2 screenPoint = Camera.main.WorldToScreenPoint(worldPosition);
+            buyButtonRectTransform.position = screenPoint;
         }
     }
 
@@ -15,7 +29,7 @@ public class ShopTriggerController : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
-            uiShop.Hide();
+            buyButtonRectTransform.gameObject.SetActive(false);
         }
     }
 }
