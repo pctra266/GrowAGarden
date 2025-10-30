@@ -45486,7 +45486,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2121234388}
   - {fileID: 236435360}
   - {fileID: 1126788150}
   - {fileID: 645674418}
@@ -45538,7 +45537,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 2121234389}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
@@ -66421,6 +66420,26 @@ MonoBehaviour:
     growTime: 10
     maxStage: 3
     harvestPrefab: {fileID: 824482138245117477, guid: 81193ff8bf49d564b9f9ae97698ddf10, type: 3}
+  - name: tomato
+    template: {fileID: 11400000, guid: cf315bb69486fb343aeedf9fd9cdb981, type: 2}
+    growTime: 10
+    maxStage: 2
+    harvestPrefab: {fileID: 4670586151172034423, guid: e81400169f183074195fab232ab05ede, type: 3}
+  - name: pineapple
+    template: {fileID: 11400000, guid: eebbf452937f75049810b4f44cbb25ab, type: 2}
+    growTime: 10
+    maxStage: 2
+    harvestPrefab: {fileID: 47281012271059548, guid: 71111a05aba1caa49973ccad8d926f01, type: 3}
+  - name: cloud
+    template: {fileID: 11400000, guid: d5b02e180c647184da7eefef31bc73ed, type: 2}
+    growTime: 10
+    maxStage: 2
+    harvestPrefab: {fileID: 5306001152362988664, guid: f8e10cc7617f4c142ad41c7d39659872, type: 3}
+  - name: cabbage
+    template: {fileID: 11400000, guid: e0d567fae37334b4ca4e2a201c78b847, type: 2}
+    growTime: 10
+    maxStage: 2
+    harvestPrefab: {fileID: 4769729926455488729, guid: 6c66566828b78cb45a2d8c0eddf91321, type: 3}
 --- !u!114 &1726072029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68368,81 +68387,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad8fdb0dae94ab14b9b2a7b59c4649e4, type: 3}
---- !u!1 &2121234387
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2121234388}
-  - component: {fileID: 2121234390}
-  - component: {fileID: 2121234389}
-  m_Layer: 5
-  m_Name: background
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &2121234388
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2121234387}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 964236307}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 560, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2121234389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2121234387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 0
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: -8872531902131867930, guid: e02faab04bc55de45a5b8c557fb7139b, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &2121234390
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2121234387}
-  m_CullTransparentMesh: 1
 --- !u!1 &2122182589
 GameObject:
   m_ObjectHideFlags: 0

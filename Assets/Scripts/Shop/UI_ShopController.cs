@@ -106,6 +106,22 @@ public class UI_ShopController : MonoBehaviour
             {
                 GameManager.instance.inventoryContainer.Add(item, 4);
             }
+            else if (item.Name.Contains("Seeds_Tomato"))
+            {
+                GameManager.instance.inventoryContainer.Add(item, 4);
+            }
+            else if (item.Name.Contains("Seeds_Pineapple"))
+            {
+                GameManager.instance.inventoryContainer.Add(item, 4);
+            }
+            else if (item.Name.Contains("Seeds_Cabbage"))
+            {
+                GameManager.instance.inventoryContainer.Add(item, 4);
+            }
+            else if (item.Name.Contains("Seeds_Cloud"))
+            {
+                GameManager.instance.inventoryContainer.Add(item, 4);
+            }
         }
 
 

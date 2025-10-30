@@ -229,6 +229,22 @@ public class ToolsCharacterController : MonoBehaviour
                                 cropsManager.SeedCrop(selectedTilePosition, "berry");
                                 GameManager.instance.inventoryContainer.RemoveItem(toolbarController.GetItem, 1); 
                             break;
+                        case "Seeds_Pineapple":
+                                cropsManager.SeedCrop(selectedTilePosition, "pineapple");
+                                GameManager.instance.inventoryContainer.RemoveItem(toolbarController.GetItem, 1); 
+                            break;
+                        case "Seeds_Cabbage":
+                                cropsManager.SeedCrop(selectedTilePosition, "cabbage");
+                                GameManager.instance.inventoryContainer.RemoveItem(toolbarController.GetItem, 1); 
+                            break;
+                        case "Seeds_Tomato":
+                                cropsManager.SeedCrop(selectedTilePosition, "tomato");
+                                GameManager.instance.inventoryContainer.RemoveItem(toolbarController.GetItem, 1); 
+                            break;
+                        case "Seeds_Cloud":
+                                cropsManager.SeedCrop(selectedTilePosition, "cloud");
+                                GameManager.instance.inventoryContainer.RemoveItem(toolbarController.GetItem, 1); 
+                            break;
                     }
 
                     RefreshToolbar();

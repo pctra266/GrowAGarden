@@ -27,6 +27,10 @@ public class ShopTriggerController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collider)
     {
+        if(Time.timeScale == 0f)
+        {
+            return;
+        }
         if (collider.gameObject.tag == "Player")
         {
             buyButtonRectTransform.gameObject.SetActive(false);
