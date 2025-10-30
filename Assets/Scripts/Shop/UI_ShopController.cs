@@ -4,7 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 public class UI_ShopController : MonoBehaviour
 {
+    [SerializeField]
     private Transform container;
+    [SerializeField]
     private Transform shopItemTemplate;
     [SerializeField] private MoneyController money;
     private Button btn;
@@ -21,8 +23,7 @@ public class UI_ShopController : MonoBehaviour
 
     private void Awake()
     {
-        container = transform.Find("container");
-        shopItemTemplate = container.Find("shopItemTemplate");
+       
         shopItemTemplate.gameObject.SetActive(false);
     }
 
@@ -32,8 +33,12 @@ public class UI_ShopController : MonoBehaviour
         Dictionary<string, Sprite> plantsDictionary = CreateSeedsFromSprite();
         CreateItemButton(plantsDictionary["Seeds_Berry"], "Seeds_Berry", 110, 0, "Berry");
         CreateItemButton(plantsDictionary["Seeds_Rice"], "Seeds_Rice", 100, 1, "Rice");
-        if (cowItem != null) CreateAnimalButton(cowItem, 2, "Bò Sữa");
-        if (chickenItem != null) CreateAnimalButton(chickenItem, 3, "Gà");
+        CreateItemButton(plantsDictionary["Seeds_Tomato"], "Seeds_Tomato", 200, 2, "Tomato");
+        CreateItemButton(plantsDictionary["Seeds_Pineapple"], "Seeds_Pineapple", 500, 3, "Pineapple");
+        CreateItemButton(plantsDictionary["Seeds_Cabbage"], "Seeds_Cabbage", 500, 4, "cabbage");
+        CreateItemButton(plantsDictionary["Seeds_Cloud"], "Seeds_Cloud", 1000, 5, "cloud");
+        if (cowItem != null) CreateAnimalButton(cowItem, 6, "Bò Sữa");
+        if (chickenItem != null) CreateAnimalButton(chickenItem, 7, "Gà");
         gameObject.SetActive(false);
         Hide();
 
@@ -42,24 +47,32 @@ public class UI_ShopController : MonoBehaviour
     private Dictionary<string, Sprite> CreateSeedsFromSprite()
     {
         Dictionary<string, Sprite> plantsDictionary = new Dictionary<string, Sprite>();
-        Sprite[] sprites = Resources.LoadAll<Sprite>("Plants");
+
+        List<Sprite> sprites = new List<Sprite>();
+        sprites.AddRange(Resources.LoadAll<Sprite>("Plants"));
+        sprites.AddRange(Resources.LoadAll<Sprite>("Plants2"));
 
         foreach (Sprite sprite in sprites)
         {
-            plantsDictionary.Add(sprite.name, sprite);
+            if (!plantsDictionary.ContainsKey(sprite.name))
+            {
+                plantsDictionary.Add(sprite.name, sprite);
+            }
+            else
+            {
+                Debug.LogWarning($"Duplicate sprite name detected: {sprite.name}");
+            }
         }
 
         return plantsDictionary;
-
     }
+
 
     private void CreateItemButton(Sprite itemSprite, string itemName, int itemCost, int positionIndex, string displayedName)
     {
         Transform shopItemTransform = Instantiate(shopItemTemplate, container);
+        shopItemTransform.SetParent(container, false);
         shopItemTransform.gameObject.SetActive(true);
-        RectTransform shopItemRectTransform = shopItemTransform.GetComponent<RectTransform>();
-        float shopItemHeight = 120f;
-        shopItemRectTransform.anchoredPosition = new Vector2(0, 150 + (-shopItemHeight * positionIndex));
         shopItemTransform.Find("nameText").GetComponent<TextMeshProUGUI>().SetText(displayedName);
         shopItemTransform.Find("priceText").GetComponent<TextMeshProUGUI>().SetText(itemCost.ToString());
         shopItemTransform.Find("itemIcon").GetComponent<Image>().sprite = itemSprite;
@@ -129,8 +142,6 @@ public class UI_ShopController : MonoBehaviour
         Transform shopItemTransform = Instantiate(shopItemTemplate, container);
         shopItemTransform.gameObject.SetActive(true);
         RectTransform shopItemRectTransform = shopItemTransform.GetComponent<RectTransform>();
-        float shopItemHeight = 120f;
-        shopItemRectTransform.anchoredPosition = new Vector2(0, 150 + (-shopItemHeight * positionIndex));
         shopItemTransform.Find("nameText").GetComponent<TextMeshProUGUI>().SetText(displayedName);
         shopItemTransform.Find("priceText").GetComponent<TextMeshProUGUI>().SetText(animalData.purchaseCost.ToString());
         shopItemTransform.Find("itemIcon").GetComponent<Image>().sprite = animalData.icon;
