@@ -1,3 +1,4 @@
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,7 +14,7 @@ public class SellPanel : ItemPanel
     [Header("World Button Reference")]
     [SerializeField] GameObject sellTriggerButton;
     [SerializeField] GameObject toolBarPanel;
-
+    [SerializeField] TextMeshProUGUI totalPriceText;
     private void Start()
     {
         sellButton.onClick.AddListener(SellItems);
@@ -55,6 +56,7 @@ public class SellPanel : ItemPanel
         inventoryPanelObject.SetActive(true);
         toolBarPanel.SetActive(false);
         base.Show();
+        UpdateTotalPrice();
     }
 
     public void Hide()
@@ -66,6 +68,26 @@ public class SellPanel : ItemPanel
         if (sellTriggerButton != null)
         {
             sellTriggerButton.SetActive(true);
+        }
+    }
+    private long CalculateTotal()
+    {
+        long total = 0;
+        foreach (ItemSlot slot in inventory.slots)
+        {
+            if (slot != null && slot.item != null)
+            {
+                total += (long)slot.item.sellPrice * slot.count;
+            }
+        }
+        return total;
+    }
+
+    private void UpdateTotalPrice()
+    {
+        if (totalPriceText != null)
+        {
+            totalPriceText.text = CalculateTotal().ToString();
         }
     }
 }
