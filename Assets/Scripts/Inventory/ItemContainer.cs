@@ -9,7 +9,11 @@ public class ItemSlot
 {
     public Item item;
     public int count;
-
+    public ItemSlot()
+    {
+        item = null;
+        count = 0;
+    }
     // Sets the item in the drag and drop controller
     public void Copy(ItemSlot slot)
     {
@@ -38,8 +42,18 @@ public class ItemSlot
 
 public class ItemContainer : ScriptableObject
 {
-    public List<ItemSlot> slots;
+    public List<ItemSlot> slots = new List<ItemSlot>();
 
+    private void OnEnable()
+    {
+        for (int i = 0; i < slots.Count; i++)
+        {
+            if (slots[i] == null)
+            {
+                slots[i] = new ItemSlot();
+            }
+        }
+    }
     // Adds item to the container
 
     public void Add(Item item, int count = 1)

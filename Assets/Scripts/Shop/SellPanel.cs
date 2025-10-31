@@ -26,6 +26,7 @@ public class SellPanel : ItemPanel
     {
         GameManager.instance.dragAndDropController.OnClick(inventory.slots[id]);
         ShowSellPanel();
+
     }
 
     public void SellItems()
