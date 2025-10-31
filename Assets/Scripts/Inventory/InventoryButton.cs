@@ -45,7 +45,7 @@ public class InventoryButton : MonoBehaviour, IPointerClickHandler
     // Clicking on an item with the mouse
     public void OnPointerClick(PointerEventData eventData)
     {
-        ItemPanel itemPanel = transform.parent.GetComponent<ItemPanel>();
+        ItemPanel itemPanel = transform.GetComponentInParent<ItemPanel>();
         itemPanel.OnClick(myIndex);
     }
 

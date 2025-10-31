@@ -1,7 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 [Serializable]
 
@@ -116,5 +116,11 @@ public class ItemContainer : ScriptableObject
             }
         }
     }
-
+    public void Clear()
+    {
+        foreach (ItemSlot slot in slots)
+        {
+            slot.Clear();
+        }
+    }
 }

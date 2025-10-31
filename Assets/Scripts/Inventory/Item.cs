@@ -9,4 +9,5 @@ public class Item : ScriptableObject
     public bool stackable;
     public Sprite icon;
     public bool isSeed;
+    public int sellPrice;
 }

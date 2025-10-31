@@ -16,3 +16,4 @@ MonoBehaviour:
   stackable: 1
   icon: {fileID: -6007972827833704223, guid: 2dfb299a3e8d0f64db660153c70ba0ab, type: 3}
   isSeed: 0
+  sellPrice: 140

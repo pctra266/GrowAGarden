@@ -16,6 +16,7 @@ MonoBehaviour:
   stackable: 1
   icon: {fileID: 8560451000399327191, guid: 12f930472c564824e8a65b0d9fe60740, type: 3}
   isSeed: 0
+  sellPrice: 200
   animalPrefab: {fileID: 3704719355576479517, guid: 4f370b7fddefab542b0c9307bd3d5403, type: 3}
   movementSpeed: 1
   productItem: {fileID: 11400000, guid: 54daa8a4b48b00c42957b337e08aeebe, type: 2}
