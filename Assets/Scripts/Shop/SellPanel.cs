@@ -11,7 +11,8 @@ public class SellPanel : ItemPanel
     [SerializeField] GameObject inventoryPanelObject;
     [Header("World Button Reference")]
     [SerializeField] GameObject sellTriggerButton;
-
+    [Header("Other UI References")]
+    [SerializeField] GameObject toolBarPanelObject;
     private void Start()
     {
 
@@ -23,7 +24,7 @@ public class SellPanel : ItemPanel
 
     public override void OnClick(int id)
     {
-        GameManager.instance.dragAndDropController.OnClick(inventory.slots[id]);
+        GameManager.instance.dragAndDropController.OnSellSlotClick(inventory.slots[id]);
         Show();
     }
 
@@ -52,6 +53,7 @@ public class SellPanel : ItemPanel
         Time.timeScale = 0f;
         gameObject.SetActive(true);
         inventoryPanelObject.SetActive(true);
+        toolBarPanelObject.SetActive(false);
         base.Show();
     }
 
@@ -60,6 +62,7 @@ public class SellPanel : ItemPanel
         Time.timeScale = 1f;
         gameObject.SetActive(false);
         inventoryPanelObject.SetActive(false);
+        toolBarPanelObject.SetActive(true);
         if (sellTriggerButton != null)
         {
             sellTriggerButton.SetActive(true);
