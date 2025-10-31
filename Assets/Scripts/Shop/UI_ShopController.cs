@@ -31,12 +31,12 @@ public class UI_ShopController : MonoBehaviour
     {
 
         Dictionary<string, Sprite> plantsDictionary = CreateSeedsFromSprite();
-        CreateItemButton(plantsDictionary["Seeds_Berry"], "Seeds_Berry", 110, 0, "Berry");
-        CreateItemButton(plantsDictionary["Seeds_Rice"], "Seeds_Rice", 100, 1, "Rice");
-        CreateItemButton(plantsDictionary["Seeds_Tomato"], "Seeds_Tomato", 200, 2, "Tomato");
-        CreateItemButton(plantsDictionary["Seeds_Pineapple"], "Seeds_Pineapple", 500, 3, "Pineapple");
-        CreateItemButton(plantsDictionary["Seeds_Cabbage"], "Seeds_Cabbage", 500, 4, "cabbage");
-        CreateItemButton(plantsDictionary["Seeds_Cloud"], "Seeds_Cloud", 1000, 5, "cloud");
+        CreateItemButton(plantsDictionary["Seeds_Berry"], "Seeds_Berry", 50, 0, "Berry");
+        CreateItemButton(plantsDictionary["Seeds_Rice"], "Seeds_Rice", 20, 1, "Rice");
+        CreateItemButton(plantsDictionary["Seeds_Tomato"], "Seeds_Tomato", 60, 2, "Tomato");
+        CreateItemButton(plantsDictionary["Seeds_Pineapple"], "Seeds_Pineapple", 150, 3, "Pineapple");
+        CreateItemButton(plantsDictionary["Seeds_Cabbage"], "Seeds_Cabbage", 400, 4, "cabbage");
+        CreateItemButton(plantsDictionary["Seeds_Cloud"], "Seeds_Cloud", 1500, 5, "cloud");
         if (cowItem != null) CreateAnimalButton(cowItem, 6, "Bò Sữa");
         if (chickenItem != null) CreateAnimalButton(chickenItem, 7, "Gà");
         gameObject.SetActive(false);
@@ -104,7 +104,7 @@ public class UI_ShopController : MonoBehaviour
             }
             else if (item.Name.Contains("Seeds_Berry"))
             {
-                GameManager.instance.inventoryContainer.Add(item, 1);
+                GameManager.instance.inventoryContainer.Add(item, 10);
             }
             else if (item.Name.Contains("Seeds_Tomato"))
             {
