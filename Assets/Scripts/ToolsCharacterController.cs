@@ -255,35 +255,6 @@ public class ToolsCharacterController : MonoBehaviour
                 cropsManager.Water(selectedTilePosition);
                 FindFirstObjectByType<SoundManager>().Play("Water");
             }
-
-            //else if (crops[(Vector2Int)selectedTilePosition].collectibleRice && toolbarController.GetItem.Name == "Bag")
-            //{
-            //    cropsManager.Collect(selectedTilePosition, "rice");
-            //    foreach (ItemSlot itemSlot in GameManager.instance.allItemsContainer.slots)
-            //    {
-            //        if (itemSlot.item.Name == "Food_Corn")
-            //        {
-            //            GameManager.instance.inventoryContainer.Add(itemSlot.item, cornPickUpCount);
-            //            RefreshToolbar();
-            //            break;
-            //        }
-            //    }
-
-            //}
-            //else if (crops[(Vector2Int)selectedTilePosition].collectibleBerry && toolbarController.GetItem.Name == "Bag")
-            //{
-            //    cropsManager.Collect(selectedTilePosition, "berry");
-            //    foreach (ItemSlot itemSlot in GameManager.instance.allItemsContainer.slots)
-            //    {
-            //        if (itemSlot.item.Name == "Food_Parsley")
-            //        {
-            //            GameManager.instance.inventoryContainer.Add(itemSlot.item, parsleyPickUpCount);
-            //            RefreshToolbar();
-            //            break;
-            //        }
-            //    }
-            //}
-            
         }
     }
 }
