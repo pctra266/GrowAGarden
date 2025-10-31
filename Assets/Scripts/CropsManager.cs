@@ -125,7 +125,7 @@ public class CropsManager : MonoBehaviour
         Destroy(crop);
         crops.Remove(pos);
 
-        MoneyController.money += 20;
+        //MoneyController.money += 20;
         groundTilemap.SetTile(pos,  grass);
     }
 }
