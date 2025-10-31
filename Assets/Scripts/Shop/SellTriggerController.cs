@@ -21,7 +21,7 @@ public class SellTriggerController : MonoBehaviour
 
     private void OpenSellPanel()
     {
-        uiSellPanel.Show();
+        uiSellPanel.ShowSellPanel();
         sellButtonRectTransform.gameObject.SetActive(false);
     }
 

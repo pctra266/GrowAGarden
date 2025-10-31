@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,7 +25,7 @@ public class SellPanel : ItemPanel
     public override void OnClick(int id)
     {
         GameManager.instance.dragAndDropController.OnClick(inventory.slots[id]);
-        Show();
+        ShowSellPanel();
     }
 
     public void SellItems()
@@ -43,11 +44,10 @@ public class SellPanel : ItemPanel
         {
             moneyController.addMoney(totalSellValue);
             inventory.Clear();
-            Show();
+            ShowSellPanel();
         }
     }
-
-    public void Show()
+    public void ShowSellPanel()
     {
         Time.timeScale = 0f;
         gameObject.SetActive(true);
