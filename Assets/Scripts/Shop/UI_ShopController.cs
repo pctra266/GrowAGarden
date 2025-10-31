@@ -100,27 +100,27 @@ public class UI_ShopController : MonoBehaviour
             Debug.Log("buy " + itemCost);
             if (item.Name.Contains("Seeds_Rice"))
             {
-                GameManager.instance.inventoryContainer.Add(item, 4);
+                GameManager.instance.inventoryContainer.Add(item, 1);
             }
             else if (item.Name.Contains("Seeds_Berry"))
             {
-                GameManager.instance.inventoryContainer.Add(item, 4);
+                GameManager.instance.inventoryContainer.Add(item, 1);
             }
             else if (item.Name.Contains("Seeds_Tomato"))
             {
-                GameManager.instance.inventoryContainer.Add(item, 4);
+                GameManager.instance.inventoryContainer.Add(item, 1);
             }
             else if (item.Name.Contains("Seeds_Pineapple"))
             {
-                GameManager.instance.inventoryContainer.Add(item, 4);
+                GameManager.instance.inventoryContainer.Add(item, 1);
             }
             else if (item.Name.Contains("Seeds_Cabbage"))
             {
-                GameManager.instance.inventoryContainer.Add(item, 4);
+                GameManager.instance.inventoryContainer.Add(item, 1);
             }
             else if (item.Name.Contains("Seeds_Cloud"))
             {
-                GameManager.instance.inventoryContainer.Add(item, 4);
+                GameManager.instance.inventoryContainer.Add(item, 1);
             }
         }
 
