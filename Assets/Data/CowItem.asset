@@ -20,5 +20,5 @@ MonoBehaviour:
   animalPrefab: {fileID: 6868533036464332019, guid: 6c1267ef8f4175444b73ec01d5d56965, type: 3}
   movementSpeed: 1
   productItem: {fileID: 11400000, guid: 76e7397a255f9fe40b1b510e7e59513f, type: 2}
-  productionTimeInSeconds: 300
-  purchaseCost: 600
+  productionTimeInSeconds: 120
+  purchaseCost: 500
