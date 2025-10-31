@@ -11,13 +11,13 @@ public class SellPanel : ItemPanel
     [SerializeField] GameObject inventoryPanelObject;
     [Header("World Button Reference")]
     [SerializeField] GameObject sellTriggerButton;
+    [SerializeField] GameObject toolBarPanel;
 
     private void Start()
     {
-
         sellButton.onClick.AddListener(SellItems);
         closeButton.onClick.AddListener(Hide);
-
+        inventory.Clear();
         Hide();
     }
 
@@ -52,6 +52,7 @@ public class SellPanel : ItemPanel
         Time.timeScale = 0f;
         gameObject.SetActive(true);
         inventoryPanelObject.SetActive(true);
+        toolBarPanel.SetActive(false);
         base.Show();
     }
 
@@ -60,6 +61,7 @@ public class SellPanel : ItemPanel
         Time.timeScale = 1f;
         gameObject.SetActive(false);
         inventoryPanelObject.SetActive(false);
+        toolBarPanel.SetActive(true);
         if (sellTriggerButton != null)
         {
             sellTriggerButton.SetActive(true);
