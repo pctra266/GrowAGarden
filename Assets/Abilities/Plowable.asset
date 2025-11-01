@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Plowable
   m_EditorClassIdentifier: Assembly-CSharp::TileData
   tiles:
-  - {fileID: 11400000, guid: 2211880a02848e246ae8d8527206a60e, type: 2}
+  - {fileID: 11400000, guid: 23f40c55290acb74dbf7cc6a2cd1e3de, type: 2}
   plowable: 1
   ableToMow: 0
   ableToSeed: 0

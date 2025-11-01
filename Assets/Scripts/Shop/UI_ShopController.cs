@@ -39,8 +39,6 @@ public class UI_ShopController : MonoBehaviour
         CreateItemButton(plantsDictionary["Seeds_Cloud"], "Seeds_Cloud", 1500, 5, "cloud");
         if (cowItem != null) CreateAnimalButton(cowItem, 6, "Bò Sữa");
         if (chickenItem != null) CreateAnimalButton(chickenItem, 7, "Gà");
-        gameObject.SetActive(false);
-        Hide();
 
     }
 
@@ -131,9 +129,9 @@ public class UI_ShopController : MonoBehaviour
 
     public void Show()
     {
+        isOpen = true;
         Time.timeScale = 0f;
         buyButton.SetActive(false);
-        isOpen = true;
         gameObject.SetActive(true);
     }
 
@@ -148,8 +146,11 @@ public class UI_ShopController : MonoBehaviour
 
     private void Update()
     {
-        inventoryPanel.SetActive(false);
-        toolbarPanel.SetActive(true);
+        if (isOpen)
+        {
+            inventoryPanel.SetActive(false);
+            toolbarPanel.SetActive(true);
+        }
     }
 
 
