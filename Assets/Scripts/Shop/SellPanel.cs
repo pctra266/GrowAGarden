@@ -44,6 +44,7 @@ public class SellPanel : ItemPanel
         if (totalSellValue > 0)
         {
             moneyController.addMoney(totalSellValue);
+            SoundManager.instance.Play("Money");
             inventory.Clear();
             ShowSellPanel();
         }

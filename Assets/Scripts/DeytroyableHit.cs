@@ -35,6 +35,7 @@ public class DeytroyableHit : ToolHit
             GameObject newObject = Instantiate(items[i]);
             newObject.transform.position = position;
         }
+        SoundManager.instance.Play("DestroyObject");
         Destroy(gameObject);
 
     }
