@@ -32,7 +32,7 @@ public class PickUpItem : MonoBehaviour
             if (GameManager.instance.inventoryContainer != null)
             {
                 GameManager.instance.inventoryContainer.Add(item, count);
-
+                SoundManager.instance.Play("PickUpItem");
                 toolbar.SetActive(!toolbar.activeInHierarchy);
                 toolbar.SetActive(true);
             }

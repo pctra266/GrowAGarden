@@ -51571,13 +51571,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SoundManager
   sounds:
   - name: Walk
-    clip: {fileID: 8300000, guid: 7fdc8b316e0779144817908d5e42dd8c, type: 3}
-    volume: 0.005
+    clip: {fileID: 8300000, guid: aa2a98948e917684daaefe2c3b791ebc, type: 3}
+    volume: 0.2
     loop: 1
     source: {fileID: 0}
   - name: Money
     clip: {fileID: 8300000, guid: db5abb5465064de448a5237ec2d5caa3, type: 3}
-    volume: 0.005
+    volume: 0.5
+    loop: 0
+    source: {fileID: 0}
+  - name: BackgroundMusic
+    clip: {fileID: 8300000, guid: 8c4d6b92ce03c684aa84442218ee4aa6, type: 3}
+    volume: 0.1
+    loop: 1
+    source: {fileID: 0}
+  - name: PickUpItem
+    clip: {fileID: 8300000, guid: 7669b62cf58bd9f49acd4003f5c5ad00, type: 3}
+    volume: 0.05
+    loop: 0
+    source: {fileID: 0}
+  - name: DestroyObject
+    clip: {fileID: 8300000, guid: 7669b62cf58bd9f49acd4003f5c5ad00, type: 3}
+    volume: 0.05
+    loop: 0
+    source: {fileID: 0}
+  - name: Plow
+    clip: {fileID: 8300000, guid: 619849545e5c9f24686db0b942821ff3, type: 3}
+    volume: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: Plant
+    clip: {fileID: 8300000, guid: 2607340ee13db304e86e164929a4723b, type: 3}
+    volume: 0.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Water
+    clip: {fileID: 8300000, guid: b15660ac4d59eb44fb52cc14961de75d, type: 3}
+    volume: 0.5
     loop: 0
     source: {fileID: 0}
 --- !u!4 &2068243876
