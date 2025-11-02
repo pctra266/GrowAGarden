@@ -2936,6 +2936,7 @@ MonoBehaviour:
   inventoryPanelObject: {fileID: 1347050015}
   sellTriggerButton: {fileID: 402035123}
   toolBarPanel: {fileID: 1686931318}
+  totalPriceText: {fileID: 1480584411}
 --- !u!1 &432025494
 GameObject:
   m_ObjectHideFlags: 0
