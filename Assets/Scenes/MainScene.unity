@@ -2748,7 +2748,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 428676739}
         m_TargetAssemblyTypeName: SellPanel, Assembly-CSharp
-        m_MethodName: SellItems
+        m_MethodName: ShowSellPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2937,6 +2937,7 @@ MonoBehaviour:
   sellTriggerButton: {fileID: 402035123}
   toolBarPanel: {fileID: 1686931318}
   totalPriceText: {fileID: 1480584411}
+  inventoryController: {fileID: 1641459651}
 --- !u!1 &432025494
 GameObject:
   m_ObjectHideFlags: 0
@@ -23617,6 +23618,7 @@ MonoBehaviour:
   uiSellPanel: {fileID: 428676739}
   sellButtonRectTransform: {fileID: 402035124}
   sellButtonPosition: {fileID: 1284361975}
+  inventoryController: {fileID: 1641459651}
 --- !u!61 &986782058
 BoxCollider2D:
   m_ObjectHideFlags: 0

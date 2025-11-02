@@ -15,6 +15,7 @@ public class SellPanel : ItemPanel
     [SerializeField] GameObject sellTriggerButton;
     [SerializeField] GameObject toolBarPanel;
     [SerializeField] TextMeshProUGUI totalPriceText;
+    [SerializeField] private InventoryController inventoryController;
     private void Start()
     {
         sellButton.onClick.AddListener(SellItems);
@@ -52,6 +53,10 @@ public class SellPanel : ItemPanel
     }
     public void ShowSellPanel()
     {
+        if (inventoryController != null && inventoryController.isOpen)
+        {
+            return;
+        }
         Time.timeScale = 0f;
         gameObject.SetActive(true);
         inventoryPanelObject.SetActive(true);
