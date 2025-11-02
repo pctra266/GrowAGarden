@@ -22,6 +22,11 @@ public class SoundManager : MonoBehaviour
             sound.source.volume = sound.volume;
             sound.source.loop = sound.loop;
         }
+        playBGM();
+    }
+    void playBGM()
+    {
+        Play("BackgroundMusic");
     }
     public void MuteAll()
     {
@@ -32,6 +37,7 @@ public class SoundManager : MonoBehaviour
     }
     public void Play(string name)
     {
+
         Sound s = new Sound();
         foreach (var sound in sounds)
         {
@@ -43,8 +49,8 @@ public class SoundManager : MonoBehaviour
         }
         try
         {
-            if (Time.timeScale == 0)
-                return;
+            //if (Time.timeScale == 0)
+            //    return;
             s.source.Play();
         }
         catch (Exception e)
