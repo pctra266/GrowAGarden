@@ -51941,9 +51941,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   gameEvents:
   - eventName: Rain
-    chance: 1
+    chance: 0.5
     delay: 0
     eventPrefab: {fileID: 663149655608471799, guid: 9059ecc3f48e9df45b929e4f998470a8, type: 3}
+    isRunning: 0
+  - eventName: Nothing
+    chance: 0.5
+    delay: 0
+    eventPrefab: {fileID: 935713995437584217, guid: 45781f8e79a13b542b1ae4a7a49ace64, type: 3}
     isRunning: 0
   eventInterval: 10
   autoTriggerEnabled: 1
