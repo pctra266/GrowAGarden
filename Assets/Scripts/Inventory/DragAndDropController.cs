@@ -72,27 +72,25 @@ public class DragAndDropController : MonoBehaviour
         }
         if (this.itemSlot.item == null)
         {
-            this.itemSlot.Copy(itemSlot);
-            itemSlot.Clear();
+            if (sellSlot.item != null)
+            {
+                this.itemSlot.Copy(sellSlot);
+                sellSlot.Clear();
+            }
         }
         else
         {
-            Item item = itemSlot.item;
-            int count = itemSlot.count;
-            itemSlot.Copy(this.itemSlot);
-            this.itemSlot.Set(item, count);
+            if (sellSlot.item == null)
+            {
+                sellSlot.Copy(this.itemSlot);
+                this.itemSlot.Clear();
+            }
+            else if (sellSlot.item == this.itemSlot.item && sellSlot.item.stackable)
+            {
+                sellSlot.count += this.itemSlot.count;
+                this.itemSlot.Clear();
+            }
         }
-        if (sellSlot.item == null)
-        {
-            sellSlot.Copy(this.itemSlot);
-            this.itemSlot.Clear();
-        }
-        else if (sellSlot.item == this.itemSlot.item && sellSlot.item.stackable)
-        {
-            sellSlot.count += this.itemSlot.count;
-            this.itemSlot.Clear();
-        }
-
         UpdateIcon();
     }
 }

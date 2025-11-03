@@ -7,6 +7,7 @@ public class SellTriggerController : MonoBehaviour
 
     [SerializeField] private RectTransform sellButtonRectTransform;
     [SerializeField] private GameObject sellButtonPosition;
+    [SerializeField] private InventoryController inventoryController;
 
     void Start()
     {
@@ -21,6 +22,10 @@ public class SellTriggerController : MonoBehaviour
 
     private void OpenSellPanel()
     {
+        if (inventoryController != null && inventoryController.isOpen)
+        {
+            return;
+        }
         uiSellPanel.ShowSellPanel();
         sellButtonRectTransform.gameObject.SetActive(false);
     }
