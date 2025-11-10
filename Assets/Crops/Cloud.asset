@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8688a1cbc65e55149ae5f644998ca250, type: 3}
+  m_Name: Cloud
+  m_EditorClassIdentifier: Assembly-CSharp::Crop
+  state0: {fileID: 11400000, guid: 6bee76eeb4a0ce241b4dc54b746b5c9b, type: 2}
+  state1: {fileID: 11400000, guid: 69646b5ba99244f408dabf0d55eaffef, type: 2}
+  state2: {fileID: 11400000, guid: 5d2b265b9f27d5a4c86905b4753af6e6, type: 2}
+  state3: {fileID: 0}
+  state4: {fileID: 0}
+  state5: {fileID: 0}
+  state: {fileID: 0}
+  position: {x: 0, y: 0, z: 0}
+  timeRemaining: 300
+  timerIsRunning: 0
+  currentStage: 0

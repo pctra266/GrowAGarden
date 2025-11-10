@@ -1,0 +1,370 @@
+fileFormatVersion: 2
+guid: 22ee9be3a53920d4a821e96524fc0ab0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 34046054642731869
+    second: plan02_0
+  - first:
+      213: -3074348133156684647
+    second: plan02_1
+  - first:
+      213: -7303135922473431159
+    second: plan02_2
+  - first:
+      213: -6007972827833704223
+    second: plan02_3
+  - first:
+      213: 5265252433242107957
+    second: plan02_4
+  - first:
+      213: 7297213121241903349
+    second: plan02_5
+  - first:
+      213: -6675931126256062842
+    second: plan02_6
+  - first:
+      213: -7864899558306767669
+    second: plan02_7
+  - first:
+      213: -4584622203502218300
+    second: plan02_8
+  - first:
+      213: -6431773846239620613
+    second: plan02_9
+  - first:
+      213: 4874672128811146923
+    second: plan02_10
+  - first:
+      213: 441311700001961419
+    second: plan02_11
+  - first:
+      213: -5019210437350854998
+    second: plan02_12
+  - first:
+      213: 988468712180093185
+    second: plan02_13
+  - first:
+      213: -968414726006273536
+    second: plan02_14
+  - first:
+      213: -4521755755099759292
+    second: plan02_15
+  - first:
+      213: 7329499426775247060
+    second: plan02_16
+  - first:
+      213: 2392411634540437244
+    second: plan02_17
+  - first:
+      213: -1508389964699129635
+    second: plan02_18
+  - first:
+      213: -5471712450352218406
+    second: plan02_19
+  - first:
+      213: -6121092943904598712
+    second: plan02_20
+  - first:
+      213: -6633683853995734775
+    second: plan02_21
+  - first:
+      213: 1461766010564725362
+    second: plan02_22
+  - first:
+      213: -8473863483037143292
+    second: plan02_23
+  - first:
+      213: -6461847316240275621
+    second: plan02_24
+  - first:
+      213: 1147715677884313442
+    second: plan02_25
+  - first:
+      213: 7050720209195150981
+    second: plan02_26
+  - first:
+      213: 2655653697247511783
+    second: plan02_27
+  - first:
+      213: 5757779904076826133
+    second: plan02_28
+  - first:
+      213: 4683372106623282059
+    second: plan02_29
+  - first:
+      213: -2863167447597022202
+    second: plan02_30
+  - first:
+      213: 462726516358687717
+    second: plan02_31
+  - first:
+      213: 4348973194594783130
+    second: plan02_32
+  - first:
+      213: -3839469427158301429
+    second: plan02_33
+  - first:
+      213: -3031787627166078782
+    second: plan02_34
+  - first:
+      213: -2030593666541413179
+    second: plan02_35
+  - first:
+      213: 8784171584566310868
+    second: plan02_36
+  - first:
+      213: -7852769349123394681
+    second: plan02_37
+  - first:
+      213: 3174015896567771975
+    second: plan02_38
+  - first:
+      213: -7330716769636001604
+    second: plan02_39
+  - first:
+      213: -9180346923101328494
+    second: plan02_40
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Seeds_Tomato
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 1120
+        width: 204
+        height: 254
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5bcbf0d4b4f87000800000000000000
+      internalID: 34046054642731869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Seeds_Pineapple
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 823
+        width: 202
+        height: 249
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c3b1e275662060c0800000000000000
+      internalID: -4584622203502218300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Seeds_Cabbage
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 491
+        width: 209
+        height: 260
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58eaeb78ca039d160800000000000000
+      internalID: 7050720209195150981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Seeds_Cloud
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 149
+        width: 217
+        height: 270
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c86758573dece5d0800000000000000
+      internalID: -3031787627166078782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 0ece009a3232d70479fa7ba8442f3f06
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Seeds_Cabbage: 7050720209195150981
+      Seeds_Cloud: -3031787627166078782
+      Seeds_Pineapple: -4584622203502218300
+      Seeds_Tomato: 34046054642731869
+      plan02_1: -3074348133156684647
+      plan02_10: 4874672128811146923
+      plan02_11: 441311700001961419
+      plan02_12: -5019210437350854998
+      plan02_13: 988468712180093185
+      plan02_14: -968414726006273536
+      plan02_15: -4521755755099759292
+      plan02_16: 7329499426775247060
+      plan02_17: 2392411634540437244
+      plan02_18: -1508389964699129635
+      plan02_19: -5471712450352218406
+      plan02_2: -7303135922473431159
+      plan02_20: -6121092943904598712
+      plan02_21: -6633683853995734775
+      plan02_22: 1461766010564725362
+      plan02_23: -8473863483037143292
+      plan02_24: -6461847316240275621
+      plan02_25: 1147715677884313442
+      plan02_27: 2655653697247511783
+      plan02_28: 5757779904076826133
+      plan02_29: 4683372106623282059
+      plan02_3: -6007972827833704223
+      plan02_30: -2863167447597022202
+      plan02_31: 462726516358687717
+      plan02_32: 4348973194594783130
+      plan02_33: -3839469427158301429
+      plan02_35: -2030593666541413179
+      plan02_36: 8784171584566310868
+      plan02_37: -7852769349123394681
+      plan02_38: 3174015896567771975
+      plan02_39: -7330716769636001604
+      plan02_4: 5265252433242107957
+      plan02_40: -9180346923101328494
+      plan02_41: -2033297290
+      plan02_5: 7297213121241903349
+      plan02_6: -6675931126256062842
+      plan02_7: -7864899558306767669
+      plan02_9: -6431773846239620613
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
