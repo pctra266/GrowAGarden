@@ -39,13 +39,24 @@ public class CropsManager : MonoBehaviour
 
     private void Update()
     {
+        rainAutoWater();
         var cropListCopy = new List<Crop>(crops.Values);
 
         foreach (var crop in cropListCopy)
             Grow(crop);
     }
 
-
+    public void rainAutoWater()
+    {
+        if (EventManager.instance != null && EventManager.instance.IsEventRunning("Rain"))
+        {
+            List<Vector3Int> positions = new List<Vector3Int>(crops.Keys);
+            foreach (var pos in positions)
+            {
+                Water(pos);
+            }
+        }
+    }
     // --- Ground actions ---
     public void Mow(Vector3Int pos) => groundTilemap.SetTile(pos, mowed);
     public void Plow(Vector3Int pos) => groundTilemap.SetTile(pos, plowed);
