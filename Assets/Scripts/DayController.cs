@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -13,6 +14,14 @@ public class DayController : MonoBehaviour
     private TextMeshProUGUI dayCounterText;
     [SerializeField]
     private TextMeshProUGUI timeOfDayText;
+    // NOTE: Do NOT assign UI objects from other scenes to this script. Instead we set a flag
+    // to tell the Main Menu to open the Best Score panel after loading.
+    public int targetDayToShowBest = 30;
+    private bool hasShownBestScore = false;
+    // Delay in seconds to show the end-of-run message before returning to menu
+    public float returnToMenuDelay = 1f;
+    // Scene name to load when returning to main menu
+    public string mainMenuSceneName = "MainMenu";
     private float timeElapsed;
     private float distanceBetweenSunAndMoon = 46f;
     private int dayCounter = 0;
@@ -51,7 +60,60 @@ public class DayController : MonoBehaviour
             {
                 dayCounterText.text = "Day: " + dayCounter.ToString();
             }
+            // Check target day and show Best Score UI once
+            if (!hasShownBestScore && dayCounter >= targetDayToShowBest)
+            {
+                hasShownBestScore = true;
+
+                // Update best score from ScoreManager if available
+                // Read player's gold as the score
+                int current = 0;
+                long gold = MoneyController.money; // MoneyController.money is a static long
+                current = Mathf.Clamp((int)gold, int.MinValue, int.MaxValue);
+
+                if (ScoreManager.Instance != null)
+                {
+                    ScoreManager.Instance.currentScore = current;
+                    ScoreManager.Instance.TrySetNewBest(current);
+                }
+                else
+                {
+                    // Fallback: update PlayerPrefs directly
+                    int bestSoFar = PlayerPrefs.GetInt("BestScore", 0);
+                    if (current > bestSoFar)
+                    {
+                        PlayerPrefs.SetInt("BestScore", current);
+                        PlayerPrefs.Save();
+                    }
+                }
+
+                // Set a flag so MainMenu will open the Best Score panel when it loads
+                PlayerPrefs.SetInt("ShowBestOnMenu", 1);
+                PlayerPrefs.SetInt("LatestScore", current);
+                PlayerPrefs.Save();
+
+                // Start coroutine to return to menu after delay (use realtime so it's independent of timeScale)
+                StartCoroutine(EndRunAndReturn(returnToMenuDelay));
+            }
         }
         
+    }
+
+    private System.Collections.IEnumerator EndRunAndReturn(float delay)
+    {
+        // Optionally ensure the game is paused visually
+        Time.timeScale = 0f;
+
+        float elapsed = 0f;
+        while (elapsed < delay)
+        {
+            // use unscaled delta so UI timers still progress if timeScale == 0
+            elapsed += Time.unscaledDeltaTime;
+            yield return null;
+        }
+
+        // Restore timeScale and load main menu
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(mainMenuSceneName);
     }
 }

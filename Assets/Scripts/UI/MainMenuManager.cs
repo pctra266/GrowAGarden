@@ -9,12 +9,26 @@ public class MainMenuManager : MonoBehaviour
     public string gameSceneName = "MainScene"; // Thay "Game" bằng tên Scene game của bạn
     public GameObject guidePanel;
     public GameObject bestScorePanel; // Panel điểm cao
-    public TextMeshProUGUI scoreText; // Text để hiện điểm
+    public TextMeshProUGUI scoreText; // Text để hiện Best Score
+    public TextMeshProUGUI latestScoreText; // Text để hiện Latest Score (vừa chơi xong)
+
+    void Start()
+    {
+        // If a previous scene set this flag, open the Best Score panel automatically
+        if (PlayerPrefs.GetInt("ShowBestOnMenu", 0) == 1)
+        {
+            // Clear the flag
+            PlayerPrefs.SetInt("ShowBestOnMenu", 0);
+            PlayerPrefs.Save();
+            OpenBestScore();
+        }
+    }
 
 
     public void StartGame()
     {
         // Tải scene game
+        ScoreManager.Instance.ResetCurrentScore();
         SceneManager.LoadScene(gameSceneName);
     }
 
@@ -54,6 +68,12 @@ public class MainMenuManager : MonoBehaviour
         int bestScore = PlayerPrefs.GetInt("BestScore", 0);
 
         scoreText.text = "Best Score: " + bestScore.ToString();
+
+        int latest = PlayerPrefs.GetInt("LatestScore", 0);
+        if (latestScoreText != null)
+        {
+            latestScoreText.text = "Latest Score: " + latest.ToString();
+        }
 
         bestScorePanel.SetActive(true);
     }

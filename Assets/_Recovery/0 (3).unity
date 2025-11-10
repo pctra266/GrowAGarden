@@ -24292,6 +24292,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 485d58a7b0ef7bd4bbdc0d8512e32d97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryButton
+--- !u!1 &1124080139
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1124080141}
+  - component: {fileID: 1124080140}
+  m_Layer: 0
+  m_Name: ScoreManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1124080140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124080139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34b11dbf4fd790045a947bbdbeac57db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScoreManager
+  currentScore: 0
+  scoreText: {fileID: 255698596}
+--- !u!4 &1124080141
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124080139}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.25592, y: -0.23936, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1126788149
 GameObject:
   m_ObjectHideFlags: 0
@@ -24617,7 +24663,7 @@ MonoBehaviour:
   dayDuration: 30
   dayCounterText: {fileID: 1264122150}
   timeOfDayText: {fileID: 1848849876}
-  targetDayToShowBest: 10
+  targetDayToShowBest: 3
   returnToMenuDelay: 1
   mainMenuSceneName: MainMenu
 --- !u!1 &1167781727
@@ -49953,7 +49999,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1693714804}
-  - component: {fileID: 1693714805}
   m_Layer: 5
   m_Name: ScoreDisplay
   m_TagString: Untagged
@@ -49982,19 +50027,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1693714805
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1693714803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0207fb4e36e80ab459f0ddd09f9a0995, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DisplayScore
-  scoreText: {fileID: 255698596}
 --- !u!1001 &1698773945
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52692,6 +52724,7 @@ SceneRoots:
   - {fileID: 1977126157}
   - {fileID: 986782060}
   - {fileID: 197792069}
+  - {fileID: 1124080141}
   - {fileID: 498441113}
   - {fileID: 1726072027}
   - {fileID: 1167781731}
