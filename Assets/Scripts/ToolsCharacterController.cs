@@ -215,6 +215,7 @@ public class ToolsCharacterController : MonoBehaviour
                 if (fields[(Vector2Int)selectedTilePosition].plowable && toolbarController.GetItem.Name == "Hoe")
                 {
                     Debug.Log("Plow");
+                    SoundManager.instance.Play("Plow");
                     cropsManager.Plow(selectedTilePosition);
                 }
                 else if (fields[(Vector2Int)selectedTilePosition].ableToSeed && toolbarController.GetItem.isSeed == true)
@@ -229,45 +230,34 @@ public class ToolsCharacterController : MonoBehaviour
                                 cropsManager.SeedCrop(selectedTilePosition, "berry");
                                 GameManager.instance.inventoryContainer.RemoveItem(toolbarController.GetItem, 1); 
                             break;
+                        case "Seeds_Pineapple":
+                                cropsManager.SeedCrop(selectedTilePosition, "pineapple");
+                                GameManager.instance.inventoryContainer.RemoveItem(toolbarController.GetItem, 1); 
+                            break;
+                        case "Seeds_Cabbage":
+                                cropsManager.SeedCrop(selectedTilePosition, "cabbage");
+                                GameManager.instance.inventoryContainer.RemoveItem(toolbarController.GetItem, 1); 
+                            break;
+                        case "Seeds_Tomato":
+                                cropsManager.SeedCrop(selectedTilePosition, "tomato");
+                                GameManager.instance.inventoryContainer.RemoveItem(toolbarController.GetItem, 1); 
+                            break;
+                        case "Seeds_Cloud":
+                                cropsManager.SeedCrop(selectedTilePosition, "cloud");
+                                GameManager.instance.inventoryContainer.RemoveItem(toolbarController.GetItem, 1); 
+                            break;
                     }
-
+                    SoundManager.instance.Play("Plant");
                     RefreshToolbar();
                 }
             }
             else if (crops[(Vector2Int)selectedTilePosition].planted && fields[(Vector2Int)selectedTilePosition].waterable && toolbarController.GetItem.Name == "WateringCan")
             {
+                Debug.Log("Watering");
                 cropsManager.Water(selectedTilePosition);
-                FindFirstObjectByType<SoundManager>().Play("Water");
+                SoundManager.instance.Play("Water");
+                
             }
-
-            //else if (crops[(Vector2Int)selectedTilePosition].collectibleRice && toolbarController.GetItem.Name == "Bag")
-            //{
-            //    cropsManager.Collect(selectedTilePosition, "rice");
-            //    foreach (ItemSlot itemSlot in GameManager.instance.allItemsContainer.slots)
-            //    {
-            //        if (itemSlot.item.Name == "Food_Corn")
-            //        {
-            //            GameManager.instance.inventoryContainer.Add(itemSlot.item, cornPickUpCount);
-            //            RefreshToolbar();
-            //            break;
-            //        }
-            //    }
-
-            //}
-            //else if (crops[(Vector2Int)selectedTilePosition].collectibleBerry && toolbarController.GetItem.Name == "Bag")
-            //{
-            //    cropsManager.Collect(selectedTilePosition, "berry");
-            //    foreach (ItemSlot itemSlot in GameManager.instance.allItemsContainer.slots)
-            //    {
-            //        if (itemSlot.item.Name == "Food_Parsley")
-            //        {
-            //            GameManager.instance.inventoryContainer.Add(itemSlot.item, parsleyPickUpCount);
-            //            RefreshToolbar();
-            //            break;
-            //        }
-            //    }
-            //}
-            
         }
     }
 }

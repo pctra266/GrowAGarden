@@ -8,7 +8,7 @@ public enum PlayerState
 }
 public class PlayerControl : MonoBehaviour
 {
-    public float speed;
+    public float speed = 7;
     public PlayerState currentState;
     private Rigidbody2D myRigidbody2D;
     private Vector3 vector;

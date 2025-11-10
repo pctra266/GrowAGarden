@@ -4,7 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 public class UI_ShopController : MonoBehaviour
 {
+    [SerializeField]
     private Transform container;
+    [SerializeField]
     private Transform shopItemTemplate;
     [SerializeField] private MoneyController money;
     private Button btn;
@@ -21,8 +23,7 @@ public class UI_ShopController : MonoBehaviour
 
     private void Awake()
     {
-        container = transform.Find("container");
-        shopItemTemplate = container.Find("shopItemTemplate");
+       
         shopItemTemplate.gameObject.SetActive(false);
     }
 
@@ -30,36 +31,46 @@ public class UI_ShopController : MonoBehaviour
     {
 
         Dictionary<string, Sprite> plantsDictionary = CreateSeedsFromSprite();
-        CreateItemButton(plantsDictionary["Seeds_Berry"], "Seeds_Berry", 110, 0, "Berry");
-        CreateItemButton(plantsDictionary["Seeds_Rice"], "Seeds_Rice", 100, 1, "Rice");
-        if (cowItem != null) CreateAnimalButton(cowItem, 2, "Bò Sữa");
-        if (chickenItem != null) CreateAnimalButton(chickenItem, 3, "Gà");
-        gameObject.SetActive(false);
-        Hide();
+        CreateItemButton(plantsDictionary["Seeds_Berry"], "Seeds_Berry", 50, 0, "Berry");
+        CreateItemButton(plantsDictionary["Seeds_Rice"], "Seeds_Rice", 20, 1, "Rice");
+        CreateItemButton(plantsDictionary["Seeds_Tomato"], "Seeds_Tomato", 60, 2, "Tomato");
+        CreateItemButton(plantsDictionary["Seeds_Pineapple"], "Seeds_Pineapple", 150, 3, "Pineapple");
+        CreateItemButton(plantsDictionary["Seeds_Cabbage"], "Seeds_Cabbage", 400, 4, "cabbage");
+        CreateItemButton(plantsDictionary["Seeds_Cloud"], "Seeds_Cloud", 1500, 5, "cloud");
+        if (cowItem != null) CreateAnimalButton(cowItem, 6, "Bò Sữa");
+        if (chickenItem != null) CreateAnimalButton(chickenItem, 7, "Gà");
 
     }
 
     private Dictionary<string, Sprite> CreateSeedsFromSprite()
     {
         Dictionary<string, Sprite> plantsDictionary = new Dictionary<string, Sprite>();
-        Sprite[] sprites = Resources.LoadAll<Sprite>("Plants");
+
+        List<Sprite> sprites = new List<Sprite>();
+        sprites.AddRange(Resources.LoadAll<Sprite>("Plants"));
+        sprites.AddRange(Resources.LoadAll<Sprite>("Plants2"));
 
         foreach (Sprite sprite in sprites)
         {
-            plantsDictionary.Add(sprite.name, sprite);
+            if (!plantsDictionary.ContainsKey(sprite.name))
+            {
+                plantsDictionary.Add(sprite.name, sprite);
+            }
+            else
+            {
+                Debug.LogWarning($"Duplicate sprite name detected: {sprite.name}");
+            }
         }
 
         return plantsDictionary;
-
     }
+
 
     private void CreateItemButton(Sprite itemSprite, string itemName, int itemCost, int positionIndex, string displayedName)
     {
         Transform shopItemTransform = Instantiate(shopItemTemplate, container);
+        shopItemTransform.SetParent(container, false);
         shopItemTransform.gameObject.SetActive(true);
-        RectTransform shopItemRectTransform = shopItemTransform.GetComponent<RectTransform>();
-        float shopItemHeight = 120f;
-        shopItemRectTransform.anchoredPosition = new Vector2(0, 150 + (-shopItemHeight * positionIndex));
         shopItemTransform.Find("nameText").GetComponent<TextMeshProUGUI>().SetText(displayedName);
         shopItemTransform.Find("priceText").GetComponent<TextMeshProUGUI>().SetText(itemCost.ToString());
         shopItemTransform.Find("itemIcon").GetComponent<Image>().sprite = itemSprite;
@@ -83,15 +94,32 @@ public class UI_ShopController : MonoBehaviour
         if (money.canBuyItems(itemCost))
         {
             money.substractMoney(itemCost);
-            //FindFirstObjectByType<SoundManager>().Play("Money");
+            SoundManager.instance.Play("Money");
+
             Debug.Log("buy " + itemCost);
             if (item.Name.Contains("Seeds_Rice"))
             {
-                GameManager.instance.inventoryContainer.Add(item, 4);
+                GameManager.instance.inventoryContainer.Add(item, 1);
             }
             else if (item.Name.Contains("Seeds_Berry"))
             {
-                GameManager.instance.inventoryContainer.Add(item, 4);
+                GameManager.instance.inventoryContainer.Add(item, 10);
+            }
+            else if (item.Name.Contains("Seeds_Tomato"))
+            {
+                GameManager.instance.inventoryContainer.Add(item, 1);
+            }
+            else if (item.Name.Contains("Seeds_Pineapple"))
+            {
+                GameManager.instance.inventoryContainer.Add(item, 1);
+            }
+            else if (item.Name.Contains("Seeds_Cabbage"))
+            {
+                GameManager.instance.inventoryContainer.Add(item, 1);
+            }
+            else if (item.Name.Contains("Seeds_Cloud"))
+            {
+                GameManager.instance.inventoryContainer.Add(item, 1);
             }
         }
 
@@ -102,9 +130,9 @@ public class UI_ShopController : MonoBehaviour
 
     public void Show()
     {
+        isOpen = true;
         Time.timeScale = 0f;
         buyButton.SetActive(false);
-        isOpen = true;
         gameObject.SetActive(true);
     }
 
@@ -119,8 +147,11 @@ public class UI_ShopController : MonoBehaviour
 
     private void Update()
     {
-        inventoryPanel.SetActive(false);
-        toolbarPanel.SetActive(true);
+        if (isOpen)
+        {
+            inventoryPanel.SetActive(false);
+            toolbarPanel.SetActive(true);
+        }
     }
 
 
@@ -129,8 +160,6 @@ public class UI_ShopController : MonoBehaviour
         Transform shopItemTransform = Instantiate(shopItemTemplate, container);
         shopItemTransform.gameObject.SetActive(true);
         RectTransform shopItemRectTransform = shopItemTransform.GetComponent<RectTransform>();
-        float shopItemHeight = 120f;
-        shopItemRectTransform.anchoredPosition = new Vector2(0, 150 + (-shopItemHeight * positionIndex));
         shopItemTransform.Find("nameText").GetComponent<TextMeshProUGUI>().SetText(displayedName);
         shopItemTransform.Find("priceText").GetComponent<TextMeshProUGUI>().SetText(animalData.purchaseCost.ToString());
         shopItemTransform.Find("itemIcon").GetComponent<Image>().sprite = animalData.icon;
@@ -144,7 +173,7 @@ public class UI_ShopController : MonoBehaviour
         if (money.canBuyItems(animalToBuy.purchaseCost))
         {
             money.substractMoney(animalToBuy.purchaseCost);
-            //FindFirstObjectByType<SoundManager>()?.Play("Money");
+            SoundManager.instance.Play("Money");
             AnimalManager.Instance.PurchaseAnimal(animalToBuy, animalSpawnPoint.position);
         }
         else

@@ -8,7 +8,7 @@ public class ItemPanel : MonoBehaviour
     public ItemContainer inventory;
     public List<InventoryButton> buttons;
 
-    private void Start()
+    private void Awake()
     {
         Init();
     }

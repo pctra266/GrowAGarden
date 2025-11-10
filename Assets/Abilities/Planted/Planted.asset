@@ -19,6 +19,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b57d985546d39bb4fab36d7e341c05af, type: 2}
   - {fileID: 11400000, guid: bdc98b98cec798d48b5688a4c8a12b13, type: 2}
   - {fileID: 11400000, guid: b585446b87fc3aa4899cf6ed9dd5d832, type: 2}
+  - {fileID: 11400000, guid: fbaddd3897639f046b53fa854ef3b9c0, type: 2}
+  - {fileID: 11400000, guid: 4a98ae43555becb4fa87536151ae9cfa, type: 2}
+  - {fileID: 11400000, guid: 5009256d1f052f34eabe6f76390f6b80, type: 2}
+  - {fileID: 11400000, guid: 3fa8e7d2c2a22654a948a79f6a9d6cfa, type: 2}
+  - {fileID: 11400000, guid: c94d689f671710543a39cdb18b0b8974, type: 2}
+  - {fileID: 11400000, guid: 7d9957bacaba9a94a983591ad6839f76, type: 2}
+  - {fileID: 11400000, guid: 6bee76eeb4a0ce241b4dc54b746b5c9b, type: 2}
+  - {fileID: 11400000, guid: 69646b5ba99244f408dabf0d55eaffef, type: 2}
   noPlant: 0
   withCorn: 0
   withParsley: 0

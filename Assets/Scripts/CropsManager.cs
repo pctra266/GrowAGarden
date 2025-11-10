@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using static UnityEditor.PlayerSettings;
 [System.Serializable]
 public class CropInfo
 {
@@ -81,8 +80,12 @@ public class CropsManager : MonoBehaviour
     void Grow(Crop crop)
     {
         if (!crop.timerIsRunning) return;
-
-        crop.timeRemaining -= Time.deltaTime;
+        float delta = Time.deltaTime;
+        if (EventManager.instance != null && EventManager.instance.IsEventRunning("Rain"))
+        {
+            delta *= 2f; 
+        }
+        crop.timeRemaining -= delta;
         if (crop.timeRemaining > 0) return;
 
         crop.NextState();
@@ -125,7 +128,7 @@ public class CropsManager : MonoBehaviour
         Destroy(crop);
         crops.Remove(pos);
 
-        MoneyController.money += 20;
+        //MoneyController.money += 20;
         groundTilemap.SetTile(pos,  grass);
     }
 }

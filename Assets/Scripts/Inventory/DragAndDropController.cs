@@ -63,4 +63,34 @@ public class DragAndDropController : MonoBehaviour
             itemIconImage.sprite = itemSlot.item.icon;
         }
     }
+    public void OnSellSlotClick(ItemSlot sellSlot)
+    {
+        if (sellSlot == null)
+        {
+            Debug.LogError("slot NULL");
+            return;
+        }
+        if (this.itemSlot.item == null)
+        {
+            if (sellSlot.item != null)
+            {
+                this.itemSlot.Copy(sellSlot);
+                sellSlot.Clear();
+            }
+        }
+        else
+        {
+            if (sellSlot.item == null)
+            {
+                sellSlot.Copy(this.itemSlot);
+                this.itemSlot.Clear();
+            }
+            else if (sellSlot.item == this.itemSlot.item && sellSlot.item.stackable)
+            {
+                sellSlot.count += this.itemSlot.count;
+                this.itemSlot.Clear();
+            }
+        }
+        UpdateIcon();
+    }
 }

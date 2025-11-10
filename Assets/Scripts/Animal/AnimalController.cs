@@ -5,9 +5,12 @@ public class AnimalController : MonoBehaviour
     private AnimalItem animalData;
     private Rigidbody2D rb;
     private Animator animator;
+    private AudioSource audioSource;
+    public AudioClip footstepSounds;
 
-    // AI & Production variables
-    private Vector2 targetPosition;
+    public AudioClip produceSound;
+
+    private Vector2 targetPosition;
     private float wanderTimer;
     private float productionTimer;
 
@@ -15,6 +18,7 @@ public class AnimalController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void Initialize(AnimalItem data)
@@ -42,27 +46,27 @@ public class AnimalController : MonoBehaviour
         if (productionTimer <= 0)
         {
             Produce();
-            productionTimer = animalData.productionTimeInSeconds; // Reset timer
-        }
+            productionTimer = animalData.productionTimeInSeconds;
+        }
     }
 
     void Produce()
     {
-        // 1. Tạo một GameObject trống để chứa sản phẩm
-        GameObject productObj = new GameObject(animalData.productItem.Name + "_Pickup");
+        if (produceSound != null)
+        {
+            audioSource.PlayOneShot(produceSound);
+        }
 
-        // 2. Đặt vị trí cho nó ở gần con vật
-        Vector3 spawnPosition = transform.position + (Vector3)Random.insideUnitCircle * 0.7f;
+        GameObject productObj = new GameObject(animalData.productItem.Name + "_Pickup");
+
+        Vector3 spawnPosition = transform.position + (Vector3)Random.insideUnitCircle * 0.7f;
         productObj.transform.position = spawnPosition;
 
-        // 3. Thêm các component cần thiết để nó hoạt động như một vật phẩm nhặt được
-        SpriteRenderer sr = productObj.AddComponent<SpriteRenderer>();
-        sr.sortingOrder = 1;          // ✅ set order cố định
+        SpriteRenderer sr = productObj.AddComponent<SpriteRenderer>();
+        sr.sortingOrder = 1;
+        productObj.AddComponent<BoxCollider2D>().isTrigger = true;
 
-        productObj.AddComponent<BoxCollider2D>().isTrigger = true;
-
-        // 4. Thêm và cấu hình script PickUpItem của bạn
-        PickUpItem pickupScript = productObj.AddComponent<PickUpItem>();
+        PickUpItem pickupScript = productObj.AddComponent<PickUpItem>();
         pickupScript.SetItem(animalData.productItem, 1);
     }
 
@@ -70,28 +74,45 @@ public class AnimalController : MonoBehaviour
     {
         Vector2 direction = (targetPosition - (Vector2)transform.position).normalized;
 
-        // --- ⭐ BẮT ĐẦU LOGIC FLIP ⭐ ---
-        // Chỉ lật khi có di chuyển ngang đáng kể (tránh lật lung tung khi đứng yên)
-        if (Mathf.Abs(direction.x) > 0.01f)
+        if (Mathf.Abs(direction.x) > 0.01f)
         {
             if (direction.x > 0)
             {
-                // Hướng sang phải -> scale.x là số dương
-                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
             }
             else
             {
-                // Hướng sang trái -> scale.x là số âm
-                transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+                transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
             }
         }
-        // --- ⭐ KẾT THÚC LOGIC FLIP ⭐ ---
 
-        rb.MovePosition(rb.position + direction * animalData.movementSpeed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + direction * animalData.movementSpeed * Time.fixedDeltaTime);
+
+        bool isWalking = direction.sqrMagnitude > 0.01f;
 
         if (animator != null)
         {
-            animator.SetBool("isWalking", direction.sqrMagnitude > 0.01f);
+            animator.SetBool("isWalking", isWalking);
+        }
+
+        if (footstepSounds != null)
+        {
+            if (isWalking)
+            {
+                if (audioSource.clip != footstepSounds || !audioSource.isPlaying)
+                {
+                    audioSource.clip = footstepSounds;
+                    audioSource.loop = true;
+                    audioSource.Play();
+                }
+            }
+            else
+            {
+                if (audioSource.clip == footstepSounds && audioSource.isPlaying)
+                {
+                    audioSource.Stop();
+                }
+            }
         }
     }
 
@@ -107,6 +128,6 @@ public class AnimalController : MonoBehaviour
     void PickNewWanderTarget()
     {
         targetPosition = (Vector2)transform.position + Random.insideUnitCircle * 5f;
-        wanderTimer = Random.Range(3f, 7f); // Wander for 3 to 7 seconds
-    }
+        wanderTimer = Random.Range(3f, 7f);
+    }
 }
