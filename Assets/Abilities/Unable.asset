@@ -14,6 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileData
   tiles:
   - {fileID: 11400000, guid: e7e38b89f46848d4b9f625193cef60ee, type: 2}
+  - {fileID: 11400000, guid: 10886b1669fee9f40af9214b9420d1b5, type: 2}
+  - {fileID: 11400000, guid: 5d6d8317b1a81ee429181d16db76eac2, type: 2}
+  - {fileID: 11400000, guid: e2dac8f67ddb68449a3a450dad22dbb0, type: 2}
+  - {fileID: 11400000, guid: f4f7071e77f34e74ca7b7d598a785a7c, type: 2}
+  - {fileID: 11400000, guid: 818df54fbf09d614788b6639635d47be, type: 2}
+  - {fileID: 11400000, guid: 963ae211acd747843b93b76456297411, type: 2}
+  - {fileID: 11400000, guid: 77d503ca7484c9c4e9a13980eb505cc4, type: 2}
+  - {fileID: 11400000, guid: fa8be73fb6f733346b4d3847de615ea6, type: 2}
+  - {fileID: 11400000, guid: 3b1b5a72caa45d742a02c38abe762fb4, type: 2}
+  - {fileID: 11400000, guid: ffc1ab883f4408542a14c7567d9ac960, type: 2}
+  - {fileID: 11400000, guid: e540277de03bdbc44a9bb73392c4459a, type: 2}
+  - {fileID: 11400000, guid: 586f3c4171f83a54c88fff9277ff1501, type: 2}
+  - {fileID: 11400000, guid: 5f8e901fb0f767d4fa50f886e1cf194f, type: 2}
+  - {fileID: 11400000, guid: 161b62082ac007241b253e82462b69ea, type: 2}
+  - {fileID: 11400000, guid: 68ef679745606d446ae9ac19f7f2bb9d, type: 2}
+  - {fileID: 11400000, guid: d6a61f05c75175c429fb0338cad7d429, type: 2}
   plowable: 0
   ableToMow: 0
   ableToSeed: 0
