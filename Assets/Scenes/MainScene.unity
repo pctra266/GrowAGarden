@@ -51093,7 +51093,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CropsManager
   grass: {fileID: 11400000, guid: 23f40c55290acb74dbf7cc6a2cd1e3de, type: 2}
   plowed: {fileID: 11400000, guid: d0472d8a1073f4c488e3c10db1587a3f, type: 2}
-  mowed: {fileID: 11400000, guid: d6a61f05c75175c429fb0338cad7d429, type: 2}
   toWater: {fileID: 11400000, guid: 25b359fe5dae92b42b49b4846f3cc1fd, type: 2}
   watered: {fileID: 11400000, guid: d6a61f05c75175c429fb0338cad7d429, type: 2}
   invisible: {fileID: 11400000, guid: 7b1adeb4b51283743addfcfc24588ae3, type: 2}
@@ -53295,16 +53294,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   gameEvents:
   - eventName: Rain
-    chance: 0.5
+    chance: 0.2
     delay: 0
     eventPrefab: {fileID: 663149655608471799, guid: 9059ecc3f48e9df45b929e4f998470a8, type: 3}
     isRunning: 0
   - eventName: Nothing
-    chance: 0.5
+    chance: 0.8
     delay: 0
     eventPrefab: {fileID: 935713995437584217, guid: 45781f8e79a13b542b1ae4a7a49ace64, type: 3}
     isRunning: 0
-  eventInterval: 10
+  eventInterval: 30
   autoTriggerEnabled: 1
 --- !u!4 &2115736740
 Transform:
