@@ -65,20 +65,17 @@ public class DayController : MonoBehaviour
             {
                 hasShownBestScore = true;
 
-                // Update best score from ScoreManager if available
-                // Read player's gold as the score
+                // Use ScoreManager's currentScore (score is accumulated at sales only).
                 int current = 0;
-                long gold = MoneyController.money; // MoneyController.money is a static long
-                current = Mathf.Clamp((int)gold, int.MinValue, int.MaxValue);
-
                 if (ScoreManager.Instance != null)
                 {
-                    ScoreManager.Instance.currentScore = current;
+                    current = ScoreManager.Instance.currentScore;
                     ScoreManager.Instance.TrySetNewBest(current);
                 }
                 else
                 {
-                    // Fallback: update PlayerPrefs directly
+                    // Fallback: read previously stored LatestScore (updated by MoneyController fallback)
+                    current = PlayerPrefs.GetInt("LatestScore", 0);
                     int bestSoFar = PlayerPrefs.GetInt("BestScore", 0);
                     if (current > bestSoFar)
                     {
