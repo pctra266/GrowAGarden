@@ -11,7 +11,7 @@ public class GameEvent
     public float delay = 0f;
     public GameObject eventPrefab;
 
-    [HideInInspector] public bool isRunning = false; 
+    [HideInInspector] public bool isRunning = false;
 
     public void Trigger(MonoBehaviour caller)
     {
@@ -37,7 +37,6 @@ public class GameEvent
             isRunning = true;
             EventManager.instance.NotifyEventStarted(this);
 
-            // nếu event script hỗ trợ "hoàn thành"
             if (trigger is ICompletableEvent completable)
             {
                 completable.OnCompleted += () =>
@@ -59,14 +58,14 @@ public class EventManager : MonoBehaviour
 {
     public static EventManager instance;
 
-    [SerializeField] private List<GameEvent> gameEvents = new List<GameEvent>();
+    [SerializeField] public List<GameEvent> gameEvents = new List<GameEvent>();
     [Header("Auto Trigger Settings")]
     [Tooltip("Khoảng thời gian giữa các event (giây)")]
     public float eventInterval = 10f;
 
     [Tooltip("Tự động kích hoạt event ngẫu nhiên sau mỗi khoảng thời gian")]
     public bool autoTriggerEnabled = true;
-    private Coroutine autoTriggerCoroutine;
+    public Coroutine autoTriggerCoroutine;
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -79,6 +78,12 @@ public class EventManager : MonoBehaviour
 
     private void Start()
     {
+        if (MainMenuManager.IsLoadingGame == true)
+        {
+
+            return;
+        }
+
         if (autoTriggerEnabled)
         {
             autoTriggerCoroutine = StartCoroutine(AutoTriggerRoutine());
@@ -90,7 +95,6 @@ public class EventManager : MonoBehaviour
         {
             yield return new WaitForSeconds(eventInterval);
 
-            // chỉ trigger nếu có event và không event nào đang chạy
             bool anyRunning = gameEvents.Exists(e => e.isRunning);
             if (!anyRunning)
             {

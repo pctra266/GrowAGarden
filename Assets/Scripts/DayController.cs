@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,49 +9,158 @@ public class DayController : MonoBehaviour
     public GameObject sun;
     public GameObject moon;
     public GameObject threshold;
-    public float dayDuration = 120f; // Duration of a full day-night cycle in seconds
+    public float dayDuration = 120f;
     [SerializeField]
     private TextMeshProUGUI dayCounterText;
     [SerializeField]
     private TextMeshProUGUI timeOfDayText;
-    // NOTE: Do NOT assign UI objects from other scenes to this script. Instead we set a flag
-    // to tell the Main Menu to open the Best Score panel after loading.
     public int targetDayToShowBest = 30;
     private bool hasShownBestScore = false;
-    // Delay in seconds to show the end-of-run message before returning to menu
     public float returnToMenuDelay = 1f;
-    // Scene name to load when returning to main menu
     public string mainMenuSceneName = "MainMenu";
-    private float timeElapsed;
+
+    public float timeElapsed;
     private float distanceBetweenSunAndMoon = 46f;
-    private int dayCounter = 0;
+    public static int dayCounter = 0;
     private List<GameObject> lights;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    // --- BIẾN MỚI ĐỂ LƯU VỊ TRÍ GỐC ---
+    private Vector3 sunStartPos;
+    private Vector3 moonStartPos;
+    private float cycleSpeed;
+
+    void Awake()
     {
-        timeElapsed = dayDuration / 4;
-        lights = new List<GameObject> { sun, moon };
+        // --- LƯU LẠI VỊ TRÍ GỐC (TRONG EDITOR) CỦA BẠN ---
+        // Phải chạy trước Start()
+        sunStartPos = sun.transform.position;
+        moonStartPos = moon.transform.position;
+        lights = new List<GameObject>();
+        cycleSpeed = (2 * distanceBetweenSunAndMoon / dayDuration);
     }
 
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
-        timeElapsed += Time.deltaTime;
-        float xPosition = lights[0].transform.position.x - (2*distanceBetweenSunAndMoon / dayDuration) * Time.deltaTime;
-        lights[0].transform.position = new Vector3(xPosition, lights[0].transform.position.y, lights[0].transform.position.z);
-        xPosition = lights[1].transform.position.x - (2*distanceBetweenSunAndMoon / dayDuration) * Time.deltaTime;
-        lights[1].transform.position = new Vector3(xPosition, lights[1].transform.position.y, lights[1].transform.position.z);
-        if (lights[0].transform.position.x <= threshold.transform.position.x)
+        // Logic này sẽ quyết định tải game hay chơi mới
+        if (MainMenuManager.IsLoadingGame == true)
         {
-            lights[1].transform.position = new Vector3(threshold.transform.position.x + distanceBetweenSunAndMoon, lights[1].transform.position.y, lights[1].transform.position.z);
-            lights.Insert(0, lights[1]);
-            lights.RemoveAt(2);
+            // --- TẢI GAME ---
+            if (SaveManager.Instance != null)
+            {
+                SaveManager.Instance.ApplyDataToGame();
+            }
+        }
+        else
+        {
+            // --- GAME MỚI ---
+            MoneyController.money = 300;
+            DayController.dayCounter = 0;
+            timeElapsed = dayDuration / 4; // Đặt về 6:00
+
+            if (GameManager.instance != null && GameManager.instance.inventoryContainer != null)
+                GameManager.instance.inventoryContainer.Clear();
+
+            CropsManager cm = FindObjectOfType<CropsManager>();
+            if (cm != null) cm.ClearAllCrops();
+
+            AnimalController[] oldAnimals = FindObjectsOfType<AnimalController>();
+            foreach (var animal in oldAnimals) Destroy(animal.gameObject);
+        }
+
+        // --- HÀM MỚI QUAN TRỌNG ---
+        // Dựa trên timeElapsed (mới hoặc đã tải), đặt lại vị trí
+        SetSunMoonState(timeElapsed);
+
+        // Cập nhật UI ngay lập tức
+        if (dayCounterText != null)
+        {
+            dayCounterText.text = "Day: " + dayCounter.ToString();
         }
         if (timeOfDayText != null)
         {
             timeOfDayText.text = Mathf.FloorToInt(((timeElapsed / dayDuration) * 24)).ToString() + ":00";
         }
-        
+    }
+
+    // --- HÀM MỚI ĐỂ CÀI ĐẶT CẢNH VẬT ---
+    void SetSunMoonState(float currentTime)
+    {
+        lights.Clear();
+
+        float quarterDay = dayDuration / 4; // 6:00
+        float threeQuarterDay = dayDuration * 3 / 4; // 18:00
+
+        // KIỂM TRA XEM LÀ BAN NGÀY HAY BAN ĐÊM
+        // Giả sử: Ngày = 6:00 (quarter) đến 18:00 (threeQuarter)
+        if (currentTime >= quarterDay && currentTime < threeQuarterDay)
+        {
+            // --- ĐANG LÀ BAN NGÀY ---
+            lights.Add(sun);  // Sun chạy (index 0)
+            lights.Add(moon); // Moon chờ (index 1)
+
+            float timeIntoDay = currentTime - quarterDay; // Thời gian trôi qua từ 6:00
+
+            // Đặt Sun vào đúng vị trí
+            sun.transform.position = new Vector3(sunStartPos.x - (cycleSpeed * timeIntoDay), sunStartPos.y, sunStartPos.z);
+            // Đặt Moon vào đúng vị trí
+            moon.transform.position = new Vector3(moonStartPos.x - (cycleSpeed * timeIntoDay), moonStartPos.y, moonStartPos.z);
+        }
+        else
+        {
+            // --- ĐANG LÀ BAN ĐÊM ---
+            lights.Add(moon); // Moon chạy (index 0)
+            lights.Add(sun);  // Sun chờ (index 1)
+
+            float timeIntoNight;
+            if (currentTime >= threeQuarterDay) // Từ 18:00 đến 00:00
+            {
+                timeIntoNight = currentTime - threeQuarterDay;
+            }
+            else // Từ 00:00 đến 6:00
+            {
+                timeIntoNight = currentTime + quarterDay;
+            }
+
+            // Đặt Moon vào đúng vị trí (nó bắt đầu từ sunStartPos)
+            moon.transform.position = new Vector3(sunStartPos.x - (cycleSpeed * timeIntoNight), sunStartPos.y, sunStartPos.z);
+            // Đặt Sun vào đúng vị trí (nó bắt đầu từ moonStartPos)
+            sun.transform.position = new Vector3(moonStartPos.x - (cycleSpeed * timeIntoNight), moonStartPos.y, moonStartPos.z);
+        }
+    }
+
+    void Update()
+    {
+        timeElapsed += Time.deltaTime;
+
+        // Di chuyển
+        float xPosition = lights[0].transform.position.x - cycleSpeed * Time.deltaTime;
+        lights[0].transform.position = new Vector3(xPosition, lights[0].transform.position.y, lights[0].transform.position.z);
+        xPosition = lights[1].transform.position.x - cycleSpeed * Time.deltaTime;
+        lights[1].transform.position = new Vector3(xPosition, lights[1].transform.position.y, lights[1].transform.position.z);
+
+        // Hoán đổi
+        if (lights[0].transform.position.x <= threshold.transform.position.x)
+        {
+            // --- SỬA LỖI LOGIC ---
+            // Đặt lại vật thể [1] (vật sắp chạy) về vị trí Bắt đầu
+            lights[1].transform.position = sunStartPos;
+
+            // Hoán đổi
+            GameObject activeObj = lights[1];
+            GameObject waitObj = lights[0];
+
+            lights.Clear();
+            lights.Add(activeObj);
+            lights.Add(waitObj);
+        }
+
+        // Cập nhật UI
+        if (timeOfDayText != null)
+        {
+            timeOfDayText.text = Mathf.FloorToInt(((timeElapsed / dayDuration) * 24)).ToString() + ":00";
+        }
+
+        // Chuyển ngày
         if (timeElapsed >= dayDuration)
         {
             timeElapsed = 0f; // Reset the cycle
@@ -60,56 +169,23 @@ public class DayController : MonoBehaviour
             {
                 dayCounterText.text = "Day: " + dayCounter.ToString();
             }
-            // Check target day and show Best Score UI once
+
             if (!hasShownBestScore && dayCounter >= targetDayToShowBest)
             {
-                hasShownBestScore = true;
-
-                // Use ScoreManager's currentScore (score is accumulated at sales only).
-                int current = 0;
-                if (ScoreManager.Instance != null)
-                {
-                    current = ScoreManager.Instance.currentScore;
-                    ScoreManager.Instance.TrySetNewBest(current);
-                }
-                else
-                {
-                    // Fallback: read previously stored LatestScore (updated by MoneyController fallback)
-                    current = PlayerPrefs.GetInt("LatestScore", 0);
-                    int bestSoFar = PlayerPrefs.GetInt("BestScore", 0);
-                    if (current > bestSoFar)
-                    {
-                        PlayerPrefs.SetInt("BestScore", current);
-                        PlayerPrefs.Save();
-                    }
-                }
-
-                // Set a flag so MainMenu will open the Best Score panel when it loads
-                PlayerPrefs.SetInt("ShowBestOnMenu", 1);
-                PlayerPrefs.SetInt("LatestScore", current);
-                PlayerPrefs.Save();
-
-                // Start coroutine to return to menu after delay (use realtime so it's independent of timeScale)
                 StartCoroutine(EndRunAndReturn(returnToMenuDelay));
             }
         }
-        
     }
 
     private System.Collections.IEnumerator EndRunAndReturn(float delay)
     {
-        // Optionally ensure the game is paused visually
         Time.timeScale = 0f;
-
         float elapsed = 0f;
         while (elapsed < delay)
         {
-            // use unscaled delta so UI timers still progress if timeScale == 0
             elapsed += Time.unscaledDeltaTime;
             yield return null;
         }
-
-        // Restore timeScale and load main menu
         Time.timeScale = 1f;
         SceneManager.LoadScene(mainMenuSceneName);
     }

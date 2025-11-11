@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+
 [System.Serializable]
 public class CropInfo
 {
@@ -14,14 +15,17 @@ public class CropInfo
 public class CropsManager : MonoBehaviour
 {
     [Header("Ground Tiles")]
-    [SerializeField] TileBase grass;
-    [SerializeField] TileBase plowed;
-    [SerializeField] TileBase toWater;
-    [SerializeField] TileBase watered;
-    [SerializeField] TileBase invisible;
+    [SerializeField] public TileBase grass;
+    [SerializeField] public TileBase plowed;
+    [SerializeField] public TileBase mowed;
+    [SerializeField] public TileBase toWater;
+    [SerializeField] public TileBase watered;
+    [SerializeField] public TileBase invisible;
     [Header("Tilemaps")]
-    [SerializeField] Tilemap groundTilemap;
-    [SerializeField] Tilemap cropTilemap;
+    [SerializeField] public Tilemap groundTilemap;
+    [SerializeField] public Tilemap cropTilemap;
+
+
     [Header("Runtime Parents")]
     [SerializeField] Transform harvestParent;
     Dictionary<Vector2Int, TileData> fields = new Dictionary<Vector2Int, TileData>();
@@ -29,8 +33,11 @@ public class CropsManager : MonoBehaviour
     [SerializeField] List<CropInfo> cropList = new();
 
     Dictionary<string, CropInfo> cropInfos = new();
-    Dictionary<Vector3Int, Crop> crops = new();
-    private void Start()
+
+    // --- THAY ĐỔI QUAN TRỌNG: BIẾN NÓ THÀNH PUBLIC ---
+    public Dictionary<Vector3Int, Crop> crops = new();
+
+    private void Awake()
     {
         foreach (var info in cropList)
             cropInfos[info.name.ToLower()] = info;
@@ -92,7 +99,7 @@ public class CropsManager : MonoBehaviour
         float delta = Time.deltaTime;
         if (EventManager.instance != null && EventManager.instance.IsEventRunning("Rain"))
         {
-            delta *= 2f; 
+            delta *= 2f;
         }
         crop.timeRemaining -= delta;
         if (crop.timeRemaining > 0) return;
@@ -109,7 +116,6 @@ public class CropsManager : MonoBehaviour
             else
             {
                 // === Final stage reached ===
-                // Nếu có harvestPrefab => spawn instance để xử lý thu hoạch
                 if (info.harvestPrefab != null)
                 {
                     Vector3 worldPos = cropTilemap.GetCellCenterWorld(crop.position);
@@ -137,7 +143,60 @@ public class CropsManager : MonoBehaviour
         Destroy(crop);
         crops.Remove(pos);
 
-    // MoneyController.AddGold(20);
-        groundTilemap.SetTile(pos,  grass);
+        // MoneyController.AddGold(20);
+        groundTilemap.SetTile(pos, grass);
+    }
+
+    // --- HÀM MỚI DÀNH CHO SAVE/LOAD ---
+
+    // Hàm này được gọi bởi SaveManager để xóa sạch cây trồng cũ trước khi tải
+    public void ClearAllCrops()
+    {
+        List<Vector3Int> positions = new List<Vector3Int>(crops.Keys);
+        foreach (var pos in positions)
+        {
+            cropTilemap.SetTile(pos, null);
+            groundTilemap.SetTile(pos, grass); // Trả về cỏ
+            if (crops.ContainsKey(pos) && crops[pos] != null)
+            {
+                Destroy(crops[pos]); // Phá hủy ScriptableObject instance
+            }
+        }
+        crops.Clear(); // Xóa sạch dictionary
+    }
+
+    // Hàm này được gọi bởi SaveManager để tái tạo cây trồng từ file save
+    public void LoadCrop(SerializableCrop data)
+    {
+        // 1. Tìm thông tin (template) của cây trồng
+        if (!cropInfos.TryGetValue(data.cropName.ToLower(), out var info)) return;
+
+        // 2. Tạo một bản sao ScriptableObject
+        var crop = Instantiate(info.template);
+        crop.name = data.cropName;
+        crop.position = data.position;
+        crop.currentStage = data.currentStage;
+        crop.timeRemaining = data.timeRemaining;
+        crop.timerIsRunning = data.timerIsRunning;
+
+        // 3. Đặt lại Tile (hình ảnh) cho đúng
+        switch (crop.currentStage)
+        {
+            case 0: crop.state = crop.state0; break;
+            case 1: crop.state = crop.state1; break;
+            case 2: crop.state = crop.state2; break;
+            case 3: crop.state = crop.state3; break;
+            case 4: crop.state = crop.state4; break;
+            case 5: crop.state = crop.state5; break;
+            default: crop.state = crop.state0; break;
+        }
+
+        // 4. Thêm lại vào Dictionary
+        crops[data.position] = crop;
+
+        // 5. Cập nhật hình ảnh trên Tilemap
+        cropTilemap.SetTile(data.position, crop.state);
+        // Cập nhật đất (tưới rồi hay chưa)
+        groundTilemap.SetTile(data.position, data.timerIsRunning ? watered : toWater);
     }
 }

@@ -7,6 +7,12 @@ public class PickUpItem : MonoBehaviour
     [SerializeField] float pickUpDistance = 1.5f;     // Distance of picking up items
     [SerializeField] Item item;
     public int count = 1;
+
+
+    public Item GetItemData()
+    {
+        return item;
+    }
     GameObject toolbar;
 
     private void Start()

@@ -13,6 +13,8 @@ public class AnimalController : MonoBehaviour
     private Vector2 targetPosition;
     private float wanderTimer;
     private float productionTimer;
+    [Tooltip("Gán prefab 'Generic_Pickup' vào đây")]
+    public GameObject pickupItemPrefab;
 
     private void Awake()
     {
@@ -52,22 +54,32 @@ public class AnimalController : MonoBehaviour
 
     void Produce()
     {
+        if (pickupItemPrefab == null)
+        {
+            Debug.LogError("CHƯA GÁN 'pickupItemPrefab' vào AnimalController!", this.gameObject);
+            return;
+        }
+
         if (produceSound != null)
         {
             audioSource.PlayOneShot(produceSound);
         }
 
-        GameObject productObj = new GameObject(animalData.productItem.Name + "_Pickup");
-
         Vector3 spawnPosition = transform.position + (Vector3)Random.insideUnitCircle * 0.7f;
-        productObj.transform.position = spawnPosition;
 
-        SpriteRenderer sr = productObj.AddComponent<SpriteRenderer>();
-        sr.sortingOrder = 1;
-        productObj.AddComponent<BoxCollider2D>().isTrigger = true;
+        GameObject productObj = Instantiate(pickupItemPrefab, spawnPosition, Quaternion.identity);
+        productObj.name = animalData.productItem.Name + "_Pickup";
 
-        PickUpItem pickupScript = productObj.AddComponent<PickUpItem>();
-        pickupScript.SetItem(animalData.productItem, 1);
+        PickUpItem pickupScript = productObj.GetComponent<PickUpItem>();
+
+        if (pickupScript != null)
+        {
+            pickupScript.SetItem(animalData.productItem, 1);
+        }
+        else
+        {
+            Debug.LogError("Prefab 'Generic_Pickup' thiếu script PickUpItem!", this.gameObject);
+        }
     }
 
     void Wander()
@@ -129,5 +141,21 @@ public class AnimalController : MonoBehaviour
     {
         targetPosition = (Vector2)transform.position + Random.insideUnitCircle * 5f;
         wanderTimer = Random.Range(3f, 7f);
+    }
+
+
+    public float GetProductionTimer()
+    {
+        return productionTimer;
+    }
+
+    public void SetProductionTimer(float savedTime)
+    {
+        productionTimer = savedTime;
+    }
+
+    public AnimalItem GetAnimalData()
+    {
+        return animalData;
     }
 }

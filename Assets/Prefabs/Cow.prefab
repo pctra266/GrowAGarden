@@ -213,6 +213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnimalController
   footstepSounds: {fileID: 8300000, guid: f8ebbca1c031f3e41b1ea52a9d335d62, type: 3}
   produceSound: {fileID: 8300000, guid: c02b0529f30303f42ba427ba04cd8228, type: 3}
+  pickupItemPrefab: {fileID: 8449462365414705248, guid: 2269dbfd19cdbae4e8cd2a632412c3ed, type: 3}
 --- !u!82 &3263893447912403197
 AudioSource:
   m_ObjectHideFlags: 0

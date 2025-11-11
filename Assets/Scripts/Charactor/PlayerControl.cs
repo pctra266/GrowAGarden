@@ -14,15 +14,10 @@ public class PlayerControl : MonoBehaviour
     private Vector3 vector;
     public Vector2 lastMotionVector;
     private Animator animator;
+
     void Start()
     {
-        foreach (ItemSlot itemSlot in GameManager.instance.inventoryContainer.slots)
-        {
-            if (itemSlot != null && itemSlot.item != null)
-            {
-                GameManager.instance.inventoryContainer.RemoveItem(itemSlot.item, itemSlot.count);
-            }
-        }
+
         currentState = PlayerState.walk;
         animator = GetComponent<Animator>();
         myRigidbody2D = GetComponent<Rigidbody2D>();
@@ -56,7 +51,7 @@ public class PlayerControl : MonoBehaviour
     {
         if (vector != Vector3.zero)
         {
-            Move(); 
+            Move();
             animator.SetFloat("moveX", vector.x);
             animator.SetFloat("moveY", vector.y);
             animator.SetBool("moving", true);

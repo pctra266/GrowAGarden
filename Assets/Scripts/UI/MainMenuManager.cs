@@ -6,6 +6,7 @@ using TMPro; // <-- THÊM DÒNG NÀY
 public class MainMenuManager : MonoBehaviour
 {
     // Gán tên Scene game của bạn vào đây trong Inspector
+    public static bool IsLoadingGame = false;
     public string gameSceneName = "MainScene"; // Thay "Game" bằng tên Scene game của bạn
     public GameObject guidePanel;
     public GameObject bestScorePanel; // Panel điểm cao
@@ -27,17 +28,14 @@ public class MainMenuManager : MonoBehaviour
 
     public void StartGame()
     {
-        // Tải scene game
-        ScoreManager.Instance.ResetCurrentScore();
+        IsLoadingGame = false; // Bắt đầu game mới
         SceneManager.LoadScene(gameSceneName);
     }
 
     // Hàm này cho nút Continue
     public void ContinueGame()
     {
-        // Tạm thời, nó cũng sẽ bắt đầu game mới
-        // Sau này bạn sẽ thêm logic load game đã lưu ở đây
-        Debug.Log("Chức năng Continue đang được phát triển!");
+        IsLoadingGame = true; // Tiếp tục game đã lưu
         SceneManager.LoadScene(gameSceneName);
     }
 
@@ -82,13 +80,6 @@ public class MainMenuManager : MonoBehaviour
     {
         bestScorePanel.SetActive(false);
     }
-
-
-
-
-
-
-
 
     public void QuitGame()
     {
