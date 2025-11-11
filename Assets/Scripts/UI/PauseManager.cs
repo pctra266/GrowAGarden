@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement; // Rất quan trọng để chuyển scene
 
 public class PauseManager : MonoBehaviour
 {
+    // Thêm ở trên cùng
+    public GameObject settingsPanel;
+    public SettingsManager settingsManager;
     // Biến này để kiểm tra xem game có đang tạm dừng hay không
     public static bool isGamePaused = false;
 
@@ -15,6 +18,26 @@ public class PauseManager : MonoBehaviour
     public string mainMenuSceneName = "MainMenu";
 
     // Update được gọi mỗi khung hình
+
+
+
+    // Thêm hàm mới này
+    public void OpenSettingsPanel()
+    {
+        pauseMenuUI.SetActive(false); // Tắt panel pause
+        settingsPanel.SetActive(true); // Bật panel settings
+        if (settingsManager != null)
+        {
+            settingsManager.OnSettingsOpen(); // Tải lại giá trị
+        }
+    }
+
+    // Thêm hàm mới này
+    public void CloseSettingsPanel()
+    {
+        settingsPanel.SetActive(false); // Tắt panel settings
+        pauseMenuUI.SetActive(true); // Bật lại panel pause
+    }
     void Update()
     {
         // Nếu người chơi nhấn phím Escape
@@ -111,4 +134,7 @@ public class PauseManager : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene(mainMenuSceneName);
     }
+
+
+
 }

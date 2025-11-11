@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e8ab28b4ff46e7643b16b94667175eac
+guid: 1d7335a06d3b02e4982ddeb37346d9c6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6827129069644923392
-    second: mau_0
+      213: -6508402838053615022
+    second: sunset-beach-cloud-01_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mau_0
+      name: sunset-beach-cloud-01_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 962
-        height: 1024
+        width: 1073
+        height: 312
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 00e3218684a2141a0800000000000000
-      internalID: -6827129069644923392
+      spriteID: 25a8bae0a128da5a0800000000000000
+      internalID: -6508402838053615022
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      mau_0: -6827129069644923392
+      sunset-beach-cloud-01_0: -6508402838053615022
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
