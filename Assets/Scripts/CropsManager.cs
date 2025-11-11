@@ -16,7 +16,6 @@ public class CropsManager : MonoBehaviour
     [Header("Ground Tiles")]
     [SerializeField] TileBase grass;
     [SerializeField] TileBase plowed;
-    [SerializeField] TileBase mowed;
     [SerializeField] TileBase toWater;
     [SerializeField] TileBase watered;
     [SerializeField] TileBase invisible;
@@ -58,7 +57,6 @@ public class CropsManager : MonoBehaviour
         }
     }
     // --- Ground actions ---
-    public void Mow(Vector3Int pos) => groundTilemap.SetTile(pos, mowed);
     public void Plow(Vector3Int pos) => groundTilemap.SetTile(pos, plowed);
 
     // --- Seed a crop ---
