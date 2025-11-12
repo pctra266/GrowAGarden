@@ -28,6 +28,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void StartGame()
     {
+        ScoreManager.Instance.ResetCurrentScore();
         IsLoadingGame = false; // Bắt đầu game mới
         SceneManager.LoadScene(gameSceneName);
     }
