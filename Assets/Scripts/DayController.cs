@@ -141,17 +141,9 @@ public class DayController : MonoBehaviour
         // Hoán đổi
         if (lights[0].transform.position.x <= threshold.transform.position.x)
         {
-            // --- SỬA LỖI LOGIC ---
-            // Đặt lại vật thể [1] (vật sắp chạy) về vị trí Bắt đầu
-            lights[1].transform.position = sunStartPos;
-
-            // Hoán đổi
-            GameObject activeObj = lights[1];
-            GameObject waitObj = lights[0];
-
-            lights.Clear();
-            lights.Add(activeObj);
-            lights.Add(waitObj);
+            lights[1].transform.position = new Vector3(threshold.transform.position.x + distanceBetweenSunAndMoon, lights[1].transform.position.y, lights[1].transform.position.z);
+            lights.Insert(0, lights[1]);
+            lights.RemoveAt(2);
         }
 
         // Cập nhật UI
