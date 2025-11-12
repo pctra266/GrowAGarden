@@ -30,6 +30,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 161b62082ac007241b253e82462b69ea, type: 2}
   - {fileID: 11400000, guid: 68ef679745606d446ae9ac19f7f2bb9d, type: 2}
   - {fileID: 11400000, guid: d6a61f05c75175c429fb0338cad7d429, type: 2}
+  - {fileID: 11400000, guid: 7b1adeb4b51283743addfcfc24588ae3, type: 2}
   plowable: 0
   ableToMow: 0
   ableToSeed: 0

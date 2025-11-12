@@ -1,0 +1,121 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5988315885416745091
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5435983355892750349}
+  - component: {fileID: 2404692780518631407}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5435983355892750349
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5988315885416745091}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.08014, y: -1.00612, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2404692780518631407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5988315885416745091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 022553db26a2578479df368600f148bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SoundManager
+  sounds:
+  - name: Walk
+    clip: {fileID: 8300000, guid: aa2a98948e917684daaefe2c3b791ebc, type: 3}
+    volume: 0.2
+    loop: 1
+    type: 1
+    source: {fileID: 0}
+  - name: Money
+    clip: {fileID: 8300000, guid: db5abb5465064de448a5237ec2d5caa3, type: 3}
+    volume: 0.5
+    loop: 0
+    type: 1
+    source: {fileID: 0}
+  - name: BackgroundMusic
+    clip: {fileID: 8300000, guid: 8c4d6b92ce03c684aa84442218ee4aa6, type: 3}
+    volume: 0.63
+    loop: 1
+    type: 0
+    source: {fileID: 0}
+  - name: PickUpItem
+    clip: {fileID: 8300000, guid: 7669b62cf58bd9f49acd4003f5c5ad00, type: 3}
+    volume: 0.05
+    loop: 0
+    type: 1
+    source: {fileID: 0}
+  - name: DestroyObject
+    clip: {fileID: 8300000, guid: 7669b62cf58bd9f49acd4003f5c5ad00, type: 3}
+    volume: 0.05
+    loop: 0
+    type: 1
+    source: {fileID: 0}
+  - name: Plow
+    clip: {fileID: 8300000, guid: 619849545e5c9f24686db0b942821ff3, type: 3}
+    volume: 0.1
+    loop: 0
+    type: 1
+    source: {fileID: 0}
+  - name: Plant
+    clip: {fileID: 8300000, guid: 2607340ee13db304e86e164929a4723b, type: 3}
+    volume: 0.5
+    loop: 0
+    type: 1
+    source: {fileID: 0}
+  - name: Water
+    clip: {fileID: 8300000, guid: b15660ac4d59eb44fb52cc14961de75d, type: 3}
+    volume: 0.5
+    loop: 0
+    type: 1
+    source: {fileID: 0}
+  - name: CowEat
+    clip: {fileID: 8300000, guid: f8ebbca1c031f3e41b1ea52a9d335d62, type: 3}
+    volume: 0.5
+    loop: 0
+    type: 1
+    source: {fileID: 0}
+  - name: CowMoo
+    clip: {fileID: 8300000, guid: c02b0529f30303f42ba427ba04cd8228, type: 3}
+    volume: 0.5
+    loop: 0
+    type: 1
+    source: {fileID: 0}
+  - name: ChickenNoise
+    clip: {fileID: 8300000, guid: e57f1d1f68ae9d04b9c8eb89f68a84bf, type: 3}
+    volume: 0.5
+    loop: 0
+    type: 1
+    source: {fileID: 0}
+  - name: ChickenKeu
+    clip: {fileID: 8300000, guid: 679320ce97093bc47826373722e108b9, type: 3}
+    volume: 0.5
+    loop: 0
+    type: 1
+    source: {fileID: 0}
+  musicGroup: {fileID: -8094941574878104239, guid: 1a0d7c7524af6d14d9541402f22aa0c5, type: 2}
+  sfxGroup: {fileID: 7542644451575177913, guid: 1a0d7c7524af6d14d9541402f22aa0c5, type: 2}

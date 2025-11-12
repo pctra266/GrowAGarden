@@ -13,6 +13,7 @@ public class PickUpItem : MonoBehaviour
     {
         return item;
     }
+
     GameObject toolbar;
 
     private void Start()
