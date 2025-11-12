@@ -133,6 +133,22 @@ public class SaveManager : MonoBehaviour
                 gameData.savedCrops.Add(sCrop);
             }
         }
+        // --- 8. LƯU CÁC PREFAB ĐƯỢC SPAWN TRONG HARVESTPARENT ---
+        gameData.savedHarvests.Clear();
+
+        if (cm != null && cm.harvestParent != null)
+        {
+            foreach (Transform child in cm.harvestParent)
+            {
+                GameObject go = child.gameObject;
+                SerializableHarvest s = new SerializableHarvest();
+                s.prefabName = go.name.Replace("(Clone)", "").Trim(); // lưu tên gốc
+                s.position = go.transform.position;
+                s.rotation = go.transform.rotation;
+                gameData.savedHarvests.Add(s);
+            }
+        }
+
 
         // 7. --- MỚI: LƯU VẬT PHẨM RƠI RA ---
         gameData.savedPickups.Clear();
@@ -293,6 +309,34 @@ public class SaveManager : MonoBehaviour
                 cm.LoadCrop(sCrop);
             }
         }
+        // --- 9. TẢI LẠI CÁC PREFAB HARVEST ---
+        if (cm != null && cm.harvestParent != null)
+        {
+            // Xóa các harvest cũ
+            List<Transform> oldHarvests = new List<Transform>();
+            foreach (Transform child in cm.harvestParent)
+                oldHarvests.Add(child);
+            foreach (var t in oldHarvests)
+                Destroy(t.gameObject);
+
+            // Tạo lại
+            foreach (SerializableHarvest s in gameData.savedHarvests)
+            {
+                // tìm prefab tương ứng trong cropList của CropsManager
+                var info = cm.GetCropInfoByHarvestName(s.prefabName);
+                if (info != null && info.harvestPrefab != null)
+                {
+                    Instantiate(info.harvestPrefab, s.position, s.rotation, cm.harvestParent);
+                }
+                else
+                {
+                    Debug.LogWarning($"Không tìm thấy prefab harvest: {s.prefabName}");
+                }
+            }
+        }
+
+
+
 
 
         // 7. --- MỚI: TẢI VẬT PHẨM RƠI RA ---
@@ -319,6 +363,7 @@ public class SaveManager : MonoBehaviour
                 }
             }
         }
+
 
         Debug.Log("ĐÃ ÁP DỤNG DỮ LIỆU VÀO GAME.");
 

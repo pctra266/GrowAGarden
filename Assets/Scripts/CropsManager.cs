@@ -27,7 +27,7 @@ public class CropsManager : MonoBehaviour
 
 
     [Header("Runtime Parents")]
-    [SerializeField] Transform harvestParent;
+    [SerializeField] public Transform harvestParent;
     Dictionary<Vector2Int, TileData> fields = new Dictionary<Vector2Int, TileData>();
     [Header("Crop Settings")]
     [SerializeField] List<CropInfo> cropList = new();
@@ -199,4 +199,17 @@ public class CropsManager : MonoBehaviour
         // Cập nhật đất (tưới rồi hay chưa)
         groundTilemap.SetTile(data.position, data.timerIsRunning ? watered : toWater);
     }
+    public CropInfo GetCropInfoByHarvestName(string harvestName)
+    {
+        foreach (var info in cropList)
+        {
+            if (info.harvestPrefab != null &&
+                info.harvestPrefab.name.Replace("(Clone)", "").Trim().Equals(harvestName, System.StringComparison.OrdinalIgnoreCase))
+            {
+                return info;
+            }
+        }
+        return null;
+    }
+
 }

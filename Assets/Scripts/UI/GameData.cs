@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 // Class phụ để lưu item (vì JSON không lưu được ScriptableObject)
 [System.Serializable]
 public class SerializableItemSlot
@@ -38,6 +39,14 @@ public class SerializablePickup
     public int count;
     public Vector3 position;
 }
+[System.Serializable]
+public class SerializableHarvest
+{
+    public string prefabName;
+    public Vector3 position;
+    public Quaternion rotation;
+}
+
 
 
 // ---- "BÌNH CHỨA" DỮ LIỆU GAME CHÍNH ----
@@ -58,6 +67,8 @@ public class GameData
     public List<SerializablePickup> savedPickups; // Danh sách vật phẩm rơi ra
     public List<Vector3Int> plowedTiles; // Lưu các ô đã cuốc
     // Constructor - Đặt giá trị mặc định cho game MỚI
+    public List<SerializableHarvest> savedHarvests = new List<SerializableHarvest>();
+
     public GameData()
     {
         this.money = 300;
@@ -75,3 +86,4 @@ public class GameData
         this.destroyedObjectIDs = new List<string>();
     }
 }
+

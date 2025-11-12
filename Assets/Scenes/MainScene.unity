@@ -52894,32 +52894,32 @@ MonoBehaviour:
     template: {fileID: 11400000, guid: 16215279a14d6cb42a74e999e6d6178e, type: 2}
     growTime: 20
     maxStage: 3
-    harvestPrefab: {fileID: 3488518334460203306, guid: a41d5e9abbb4d46458ecf1ccc55aff07, type: 3}
+    harvestPrefab: {fileID: 4344482662475482122, guid: 46ca34f8cef7c734db95c7c3980862a6, type: 3}
   - name: berry
     template: {fileID: 11400000, guid: ccdfaf6a111ebcd46bb6812264afa85e, type: 2}
     growTime: 10
     maxStage: 3
-    harvestPrefab: {fileID: 141381093050343742, guid: f93dd5561de452e4594d1e1ea76869cd, type: 3}
+    harvestPrefab: {fileID: 824482138245117477, guid: 81193ff8bf49d564b9f9ae97698ddf10, type: 3}
   - name: tomato
     template: {fileID: 11400000, guid: cf315bb69486fb343aeedf9fd9cdb981, type: 2}
     growTime: 45
     maxStage: 2
-    harvestPrefab: {fileID: 9073850212947065643, guid: 256c9d532e09aeb4eac1b3e8e94adf80, type: 3}
+    harvestPrefab: {fileID: 4670586151172034423, guid: e81400169f183074195fab232ab05ede, type: 3}
   - name: pineapple
     template: {fileID: 11400000, guid: eebbf452937f75049810b4f44cbb25ab, type: 2}
     growTime: 90
     maxStage: 2
-    harvestPrefab: {fileID: 1440264521544948406, guid: 683ec8fed3c58384e97d6b7851a1108e, type: 3}
+    harvestPrefab: {fileID: 47281012271059548, guid: 71111a05aba1caa49973ccad8d926f01, type: 3}
   - name: cloud
     template: {fileID: 11400000, guid: d5b02e180c647184da7eefef31bc73ed, type: 2}
     growTime: 300
     maxStage: 2
-    harvestPrefab: {fileID: 6518887589452046811, guid: b1d95e7ddc96dee4ea6bc391c0a6c080, type: 3}
+    harvestPrefab: {fileID: 5306001152362988664, guid: f8e10cc7617f4c142ad41c7d39659872, type: 3}
   - name: cabbage
     template: {fileID: 11400000, guid: e0d567fae37334b4ca4e2a201c78b847, type: 2}
     growTime: 180
     maxStage: 2
-    harvestPrefab: {fileID: 4314712460837584433, guid: f9dfb15acdb496142bde8a677e7672ec, type: 3}
+    harvestPrefab: {fileID: 4769729926455488729, guid: 6c66566828b78cb45a2d8c0eddf91321, type: 3}
 --- !u!114 &1726072029
 MonoBehaviour:
   m_ObjectHideFlags: 0
