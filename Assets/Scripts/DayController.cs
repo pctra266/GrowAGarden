@@ -164,6 +164,8 @@ public class DayController : MonoBehaviour
 
             if (!hasShownBestScore && dayCounter >= targetDayToShowBest)
             {
+                hasShownBestScore = true;
+                PlayerPrefs.SetInt("ShowBestOnMenu", 1);
                 StartCoroutine(EndRunAndReturn(returnToMenuDelay));
             }
         }
