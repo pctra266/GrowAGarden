@@ -56,6 +56,10 @@ public class DayController : MonoBehaviour
             MoneyController.money = 300;
             DayController.dayCounter = 0;
             timeElapsed = dayDuration / 4; // Đặt về 6:00
+            if (SaveManager.Instance != null)
+            {
+                SaveManager.Instance.ResetDestroyedObjectsList();
+            }
 
             if (GameManager.instance != null && GameManager.instance.inventoryContainer != null)
                 GameManager.instance.inventoryContainer.Clear();

@@ -405,4 +405,18 @@ public class SaveManager : MonoBehaviour
 
         return gameData.destroyedObjectIDs.Contains(id);
     }
+
+    // --- HÀM MỚI ĐỂ RESET DANH SÁCH KHI CHƠI GAME MỚI ---
+    public void ResetDestroyedObjectsList()
+    {
+        if (gameData.destroyedObjectIDs == null)
+        {
+            gameData.destroyedObjectIDs = new List<string>();
+        }
+        else
+        {
+            gameData.destroyedObjectIDs.Clear();
+        }
+        Debug.Log("Đã reset danh sách vật thể bị phá hủy (New Game).");
+    }
 }
