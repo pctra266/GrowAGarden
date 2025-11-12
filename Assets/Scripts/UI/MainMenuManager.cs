@@ -12,6 +12,8 @@ public class MainMenuManager : MonoBehaviour
     public GameObject bestScorePanel; // Panel điểm cao
     public TextMeshProUGUI scoreText; // Text để hiện Best Score
     public TextMeshProUGUI latestScoreText; // Text để hiện Latest Score (vừa chơi xong)
+    public GameObject settingsPanel;
+    public SettingsManager settingsManager;
 
     void Start()
     {
@@ -44,6 +46,15 @@ public class MainMenuManager : MonoBehaviour
     {
         // Sau này bạn có thể tạo một panel cài đặt và bật nó ở đây
         Debug.Log("Mở màn hình cài đặt!");
+        if (settingsPanel != null)
+        {
+            settingsPanel.SetActive(true);
+        }
+
+        if (settingsManager != null)
+        {
+            settingsManager.OnSettingsOpen(); 
+        }
     }
 
     // Hàm này cho nút Guide
@@ -88,5 +99,12 @@ public class MainMenuManager : MonoBehaviour
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
+    }
+    public void CloseSettingsPanel()
+    {
+        if (settingsPanel != null)
+        {
+            settingsPanel.SetActive(false);
+        }
     }
 }
